@@ -29,7 +29,7 @@
   flex-direction: column;
   justify-content: center;
   gap: var(--sp-5);
-  padding: clamp(2rem, 6vw, 5rem);
+  padding: clamp(1.5rem, 6vw, 5rem) clamp(1.15rem, 6vw, 5rem);
 }
 
 .login-brand {
@@ -86,19 +86,18 @@
 }
 
 .login-password {
-  position: relative;
-  display: grid;
+  display: flex;
+  align-items: stretch;
+  gap: 0.4rem;
 }
 
 .login-password .input {
-  padding-right: 5.5rem;
+  flex: 1 1 auto;
+  min-width: 0;
 }
 
 .login-password__toggle {
-  position: absolute;
-  top: 0.4rem;
-  right: 0.4rem;
-  bottom: 0.4rem;
+  flex: none;
   padding: 0 0.7rem;
   color: var(--blue-700);
   background: var(--blue-050);

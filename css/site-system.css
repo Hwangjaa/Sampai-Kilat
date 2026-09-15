@@ -85,7 +85,9 @@
   --shadow-3: 0 24px 60px rgb(6 32 56 / 22%);
 
   --content: 74rem;
-  --gutter: clamp(1.1rem, 4vw, 2.5rem);
+  /* Layout gutters/paddings are px/vw based on purpose: they must not scale with
+     text-only zoom, or a 200% zoom would squeeze the content to half the width. */
+  --gutter: clamp(17px, 4vw, 40px);
   --header-h: 4.25rem;
 
   --focus: var(--blue-600);
@@ -146,6 +148,7 @@ h4 {
   line-height: 1.14;
   letter-spacing: -0.02em;
   text-wrap: balance;
+  overflow-wrap: anywhere;
 }
 
 h1 {
@@ -293,6 +296,14 @@ a:hover {
   font-size: var(--fs-mono);
   letter-spacing: -0.01em;
   font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* Emails, phone numbers and IDs are single long tokens: let them break instead
+   of forcing a horizontal scrollbar at large text sizes. */
+a[href^="mailto:"],
+a[href^="tel:"] {
+  overflow-wrap: anywhere;
 }
 
 .sr-only {
@@ -342,6 +353,7 @@ a:hover {
 
 .site-header__inner {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-4);
@@ -358,7 +370,8 @@ a:hover {
   font-weight: 800;
   letter-spacing: -0.035em;
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .brand:hover {
@@ -382,6 +395,7 @@ a:hover {
 
 .site-nav {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.15rem;
 }
@@ -601,9 +615,11 @@ body.nav-open .nav-scrim {
 
 .app-user {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--sp-3);
   margin-left: auto;
+  min-width: 0;
   font-size: var(--fs-sm);
 }
 
@@ -611,9 +627,11 @@ body.nav-open .nav-scrim {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
   color: #fff;
   font-family: var(--font-display);
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .app-user__avatar {
@@ -726,7 +744,8 @@ main {
   font-weight: 700;
   letter-spacing: -0.01em;
   text-decoration: none;
-  white-space: nowrap;
+  white-space: normal;
+  text-align: center;
   cursor: pointer;
   transition: background-color var(--dur-1) var(--ease), border-color var(--dur-1) var(--ease),
     color var(--dur-1) var(--ease), transform var(--dur-1) var(--ease), box-shadow var(--dur-1) var(--ease);
@@ -842,7 +861,7 @@ main {
 }
 
 .card {
-  padding: clamp(1.1rem, 3vw, 1.85rem);
+  padding: clamp(18px, 3vw, 30px);
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -856,6 +875,7 @@ main {
 
 .card__head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: var(--sp-4);
@@ -1157,7 +1177,7 @@ main {
   font-size: var(--fs-xs);
   font-weight: 700;
   line-height: 1.5;
-  white-space: nowrap;
+  white-space: normal;
 }
 
 .badge__dot {
@@ -1584,6 +1604,7 @@ main {
 .empty-state p {
   max-width: 34rem;
   color: var(--ink-soft);
+  overflow-wrap: anywhere;
 }
 
 .skeleton {
@@ -1946,6 +1967,7 @@ dialog.modal[open] {
 
 .site-footer a {
   color: #dce8f3;
+  overflow-wrap: anywhere;
 }
 
 .site-footer a:hover {

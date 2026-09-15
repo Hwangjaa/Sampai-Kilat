@@ -345,7 +345,10 @@ Sampai Kilat/
 | `php -l` on every PHP file | clean |
 | End-to-end flow over HTTP with a cookie jar (login → dashboard → 3-step create → update → register → track public page, plus failure paths and CSRF rejection, with test rows removed afterwards and the 12-row seed data left intact) | 40/40 checks pass |
 | CSRF token present **inside** each form that posts state (not just somewhere on the page) | verified per form |
-| Responsive audit through the DOM at 320/375/390/430/768/1600 px, 14 pages | 84 loads, 0 overflows, exactly one `h1` per page |
+| Responsive audit through the DOM at 320/375/390/430/768/1600 px, 14 pages | 91 loads, 0 overflows, exactly one `h1` per page |
+| Text-only zoom to 200% at 320/375/1280 px, 14 pages | 38 of 39 loads clean; `src/help/Help.html` at a 320 px viewport (≈160 px effective width) still overflows by 23 px — the one residual, everything else reflows |
+| Touch targets in the mobile drawer | 48 px per row, measured |
+| Contrast of the muted/on-dark text tokens | computed: 7.3:1 `--ink-soft` on white, 7.8:1 on `--navy-950`, 10.5:1 signal on navy |
 | No inline `<script>`, no `on*=` attribute, no `style=` attribute, no `href="#"`, no English nav labels, no em dash in UI copy | grep-verified |
 | Screenshots reviewed (desktop + mobile, menu open, tracking result, calculator result) | findings fixed: invisible progress bar (`width` on an inline `span`), a toast covering the rate table, and a 4-px overflow caused by a `<select>` intrinsic width |
 
