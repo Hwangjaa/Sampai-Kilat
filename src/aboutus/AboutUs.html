@@ -1,107 +1,241 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SampaiKilat - Tentang Kami</title>
-    <link rel="stylesheet" href="../../css/aboutus/AboutUs.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cara SampaiKilat bekerja: enam posisi paket tercatat, jalur darat dan udara, pembayaran tunai dan non-tunai, serta layanan pelanggan 24 jam.">
+  <title>Tentang Kami | SampaiKilat</title>
+  <link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/site-system.css">
+  <link rel="stylesheet" href="../../css/aboutus/AboutUs.css">
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
-                alt="Logo">
-            <span>SampaiKilat</span>
+  <a class="skip-link" href="#utama">Lewati ke isi</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../../homepage.html">
+        <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+        <span class="brand__text">Sampai<em>Kilat</em></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
+        <a href="../../homepage.html">Beranda</a>
+        <a href="../cekresi/cekresi.php">Cek Resi</a>
+        <a href="../cektarif/cektarif.html">Cek Tarif</a>
+        <a href="../ceklokasi/CekLokasi.html">Lokasi</a>
+        <a href="../aboutus/AboutUs.html" aria-current="page">Tentang Kami</a>
+        <a href="../help/Help.html">Bantuan</a>
+        <a class="btn btn--sm site-nav__cta" href="../login/loginpage.html">Masuk staf</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="utama">
+    <div class="container about-top">
+      <nav aria-label="Remah roti">
+        <ol class="breadcrumb">
+          <li><a href="../../homepage.html">Beranda</a></li>
+          <li aria-current="page">Tentang kami</li>
+        </ol>
+      </nav>
+    </div>
+
+    <section class="about-hero on-dark" aria-labelledby="judul-tentang">
+      <img class="about-hero__photo" src="../../assets/aboutus/image/pexels-photo-6169644.jpeg" alt="Petugas menyiapkan paket untuk perjalanan">
+      <div class="container about-hero__body">
+        <p class="eyebrow">Tentang SampaiKilat</p>
+        <h1 id="judul-tentang">Paket membawa lebih dari barang.</h1>
+        <p class="about-hero__lead">Karena itu perjalanan harus jelas, bantuan harus mudah ditemukan, dan janji pengiriman tidak boleh samar.</p>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="fakta-operasional">
+      <div class="container">
+        <p class="eyebrow">Fakta operasional</p>
+        <h2 id="fakta-operasional">Yang benar-benar tercatat di sistem kami.</h2>
+        <p class="lead measure">Angka di bawah ini berasal dari data operasional SampaiKilat, bukan perkiraan pemasaran.</p>
+
+        <div class="stat-grid about-stats">
+          <div class="stat">
+            <span class="stat__label">Posisi paket tercatat</span>
+            <span class="stat__value">6</span>
+            <span class="stat__meta">Lima gudang kota dan satu status akhir SAMPAI.</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Jalur pengiriman</span>
+            <span class="stat__value">Darat &amp; udara</span>
+            <span class="stat__meta">Jalur dipilih sesuai kota tujuan paket.</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Pembayaran</span>
+            <span class="stat__value">Tunai &amp; non-tunai</span>
+            <span class="stat__meta">Di sistem tercatat dua jenis pembayaran: Tunai (bayar saat paket diterima atau COD) dan Non-tunai.</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Layanan pelanggan</span>
+            <span class="stat__value">24 jam</span>
+            <span class="stat__meta">Telepon dan email, Senin sampai Minggu.</span>
+          </div>
         </div>
-        <nav>
-            <a href="../../homepage.html">Home</a>
-            <a href="../cekresi/cekresi.php">Cek Resi</a>
-            <a href="../aboutus/AboutUs.html">About Us</a>
-            <a href="../help/Help.html">Help</a>
-        </nav>
-    </header>
 
-    <!-- Background Image Section -->
-    <section class="background-image"></section>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <section class="tentang-section">
-            <div class="tentang-content">
-                <h2>Tentang SampaiKilat</h2>
-                <p>SampaiKilat adalah layanan pengiriman cepat yang mengutamakan kecepatan, keamanan, dan kemudahan.
-                    Kami memahami pentingnya setiap pengiriman, mulai dari paket personal hingga bisnis, dan itulah
-                    mengapa kami hadir dengan solusi yang dapat diandalkan, kapan pun Anda butuhkan.</p>
-                <br>
-                <p>Dengan jangkauan pengiriman yang luas, kami melayani pengiriman domestik dan internasional melalui
-                    jalur darat, udara, dan laut. Didukung oleh armada pesawat dan truk yang handal serta tim
-                    profesional, SampaiKilat memastikan paket Anda sampai dengan aman, tepat waktu, dan tanpa kendala.
-                </p>
-                <br>
-                <p>Kami juga menawarkan berbagai fitur unggulan seperti gratis ongkir untuk e-commerce, layanan bayar di
-                    tempat (COD), dan customer service yang tersedia 24/7. Baik Anda memerlukan pengiriman cepat antar
-                    kota, antar negara, atau kebutuhan bisnis yang lebih kompleks, SampaiKilat siap menjadi partner
-                    pengiriman terpercaya Anda.</p>
-            </div>
-        </section>
-
-        <section class="visi-misi-section">
-            <h2>Visi dan Misi</h2>
-            <div class="visi-misi-container">
-                <div class="visi">
-                    <img src="../../assets/aboutus/image/5203555.png" alt="Visi Icon">
-                    <h3>Visi</h3>
-                    <p>Menjadi solusi pengiriman tercepat, teraman, dan paling terpercaya yang mampu menjangkau seluruh
-                        wilayah domestik dan internasional, serta menjadi pilihan utama bagi pelanggan dari berbagai
-                        sektor.</p>
-                </div>
-                <div class="misi">
-                    <img src="../../assets/aboutus/image/dart-dartboard_78370-8133-removebg-preview.png"
-                        alt="Misi Icon">
-                    <h3>Misi</h3>
-                    <p>SampaiKilat berkomitmen untuk menyediakan layanan pengiriman cepat, aman, dan efisien. Kami
-                        menawarkan gratis ongkir dan opsi pembayaran COD untuk kenyamanan pelanggan, serta menekankan
-                        customer service yang responsif untuk mendukung pertumbuhan bisnis mereka.</p>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <div class="footer-logo-container">
-                    <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
-                        alt="Logo" class="footer-logo">
-                    <p><b>SampaiKilat</b></p>
-                </div>
-                <p>CUSTOMER SERVICE</p>
-                <p><img src="../../assets/homepage/image/684846.png" alt=""> (021) 222 2222</p>
-                <p><img src="../../assets/homepage/image/png-transparent-computer-icons-envelope-mail-envelope-miscellaneous-angle-triangle-removebg-preview (1).png"
-                        alt=""> sampai@kilat.co.id</p>
-
-            </div>
-            <div class="footer-section">
-                <p><b>PERUSAHAAN</b></p>
-                <a href="../aboutus/AboutUs.html">Profil Perusahaan</a><br>
-                <a href="../help/Help.html">Bantuan</a>
-            </div>
-            <div class="footer-section">
-                <p><b>LAYANAN</b></p>
-                <a href="../cekresi/cekresi.php">Lacak Pengiriman</a><br>
-                <a href="../cektarif/cektarif.html">Cek Tarif</a><br>
-                <a href="../ceklokasi/CekLokasi.html">Lokasi</a>
-            </div>
-            <div class="footer-section">
-                <p><b>Peraturan</b></p>
-                <a href="../rules/RulesPage.html">Larangan Pengiriman</a>
-            </div>
+        <div class="card about-positions">
+          <h3>Daftar posisi paket</h3>
+          <p class="muted">Perjalanan sebuah paket hanya dapat berada di salah satu dari enam posisi berikut.</p>
+          <div class="table-wrap">
+            <table class="table table--stack">
+              <caption>Posisi paket pada sistem operasional SampaiKilat</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Kode</th>
+                  <th scope="col">Posisi</th>
+                  <th scope="col">Jenis</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-label="Kode" class="cell-resi">PS-001</td>
+                  <td data-label="Posisi">WH Tangerang</td>
+                  <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                </tr>
+                <tr>
+                  <td data-label="Kode" class="cell-resi">PS-002</td>
+                  <td data-label="Posisi">WH Jakarta</td>
+                  <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                </tr>
+                <tr>
+                  <td data-label="Kode" class="cell-resi">PS-003</td>
+                  <td data-label="Posisi">WH Depok</td>
+                  <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                </tr>
+                <tr>
+                  <td data-label="Kode" class="cell-resi">PS-004</td>
+                  <td data-label="Posisi">WH Bekasi</td>
+                  <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                </tr>
+                <tr>
+                  <td data-label="Kode" class="cell-resi">PS-005</td>
+                  <td data-label="Posisi">WH Bogor</td>
+                  <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                </tr>
+                <tr>
+                  <td data-label="Kode" class="cell-resi">PS-006</td>
+                  <td data-label="Posisi">SAMPAI</td>
+                  <td data-label="Jenis"><span class="badge badge--delivered"><span class="badge__dot"></span>Sampai</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="field__help">Sumber angka: tabel posisi_paket (6 baris), tabel supir (28 kendaraan di 16 daerah), dan tabel jenis_pembayaran (Tunai, Non-tunai).</p>
         </div>
-    </footer>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="cara-kerja">
+      <div class="container about-story">
+        <p class="eyebrow">01 / Cara kami bekerja</p>
+        <div class="about-story__body">
+          <h2 id="cara-kerja">Kecepatan berarti tahu apa yang terjadi selanjutnya.</h2>
+          <p>SampaiKilat dibangun sebagai layanan pengiriman untuk kebutuhan personal dan usaha. Kami menghubungkan proses pencatatan, transit, dan pelacakan dalam satu alur yang bisa dipahami pengirim maupun penerima.</p>
+          <p>Jalur darat dan udara dipilih sesuai tujuan. Setiap perpindahan paket dicatat agar status terakhir tetap terlihat oleh pelanggan, bukan tersimpan hanya untuk tim operasional.</p>
+          <p class="muted">Yang tidak kami tampilkan: cerita pendirian, jumlah paket yang pernah dikirim, jumlah karyawan, penghargaan, dan testimoni. Datanya tidak ada di sistem, jadi kami tidak mengarangnya.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--dark on-dark" aria-labelledby="prinsip-layanan">
+      <div class="container">
+        <p class="eyebrow">Prinsip layanan</p>
+        <h2 id="prinsip-layanan">Tiga hal yang kami jaga.</h2>
+        <ul class="grid grid--3 about-principles">
+          <li class="about-principle">
+            <span class="about-principle__num mono">01</span>
+            <h3>Status yang jelas</h3>
+            <p>Nomor resi menghubungkan pelanggan dengan riwayat perjalanan paket, dari gudang pertama sampai posisi SAMPAI.</p>
+          </li>
+          <li class="about-principle">
+            <span class="about-principle__num mono">02</span>
+            <h3>Proses yang aman</h3>
+            <p>Data pengiriman dikelola lewat alur staf yang terlindungi dan dapat ditelusuri.</p>
+          </li>
+          <li class="about-principle">
+            <span class="about-principle__num mono">03</span>
+            <h3>Bantuan yang dekat</h3>
+            <p>Ketika perjalanan tidak sesuai rencana, pelanggan tahu harus menghubungi siapa dan kapan saja.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="catatan-terbuka">
+      <div class="container">
+        <div class="card">
+          <div class="card__head">
+            <h2 id="catatan-terbuka">Catatan keterbukaan</h2>
+          </div>
+          <div class="empty-state">
+            <span class="empty-state__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm1 15h-2v-2h2v2Zm0-4h-2V7h2v6Z"/></svg>
+            </span>
+            <h3>Belum ada testimoni, penghargaan, atau angka jumlah paket</h3>
+            <p>Halaman ini hanya menampilkan data yang tercatat di sistem: posisi paket, jalur pengiriman, jenis pembayaran, dan kanal layanan pelanggan. Karena sistem belum menyimpan testimoni, penghargaan, tahun pendirian, jumlah karyawan, atau jumlah paket, semuanya tidak kami tampilkan.</p>
+            <a class="btn btn--secondary btn--sm" href="../help/Help.html">Tanya layanan pelanggan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-cta-section" aria-labelledby="cta-resi">
+      <div class="container">
+        <div class="card about-cta">
+          <p class="eyebrow">Sudah punya resi?</p>
+          <h2 id="cta-resi">Lihat posisi paket terakhir.</h2>
+          <p class="about-cta__text">Masukkan nomor resi Anda pada halaman Cek Resi untuk melihat posisi terakhir dan riwayat perjalanan paket.</p>
+          <div class="cluster">
+            <a class="btn btn--primary" href="../cekresi/cekresi.php">Cek resi sekarang</a>
+            <a class="btn btn--secondary" href="../cektarif/cektarif.html">Lihat tarif pengiriman</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="../../homepage.html">
+          <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+          <span class="brand__text">Sampai<em>Kilat</em></span>
+        </a>
+        <p>Paket jalan. Anda tenang. Layanan pengiriman domestik dengan status yang bisa dibaca.</p>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="foot-layanan">
+        <h2 id="foot-layanan">Layanan</h2>
+        <a href="../cekresi/cekresi.php">Cek resi</a>
+        <a href="../cektarif/cektarif.html">Cek tarif</a>
+        <a href="../ceklokasi/CekLokasi.html">Cakupan lokasi</a>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="foot-dukungan">
+        <h2 id="foot-dukungan">Dukungan</h2>
+        <a href="../help/Help.html">Bantuan dan komplain</a>
+        <a href="../rules/RulesPage.html">Larangan pengiriman</a>
+        <a href="../aboutus/AboutUs.html">Tentang kami</a>
+      </nav>
+      <div class="site-footer__col">
+        <h2 id="foot-kontak">Hubungi</h2>
+        <a href="tel:+62212222222">(021) 222 2222</a>
+        <a href="mailto:sampai@kilat.co.id">sampai@kilat.co.id</a>
+        <span>Senin–Minggu, 24 jam</span>
+      </div>
+    </div>
+    <div class="container site-footer__base">
+      <p>© 2026 SampaiKilat. Proyek akademik Secure Programming, BINUS University.</p>
+      <p>Jakarta · Tangerang · Depok · Bekasi · Bogor</p>
+    </div>
+  </footer>
+
+  <script src="../../javascript/site.js" defer></script>
 </body>
-
 </html>

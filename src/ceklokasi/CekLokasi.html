@@ -1,9 +1,360 @@
 <!doctype html>
 <html lang="id">
-<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Cakupan Layanan | SampaiKilat</title><link rel="stylesheet" href="../../css/ceklokasi/CekLokasi.css"></head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cakupan layanan SampaiKilat: 16 daerah supir, 28 kendaraan, dan enam posisi paket yang tercatat di sistem operasional.">
+  <title>Cakupan Layanan | SampaiKilat</title>
+  <link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/site-system.css">
+  <link rel="stylesheet" href="../../css/ceklokasi/CekLokasi.css">
+</head>
 <body>
-<a class="skip-link" href="#utama">Lewati ke isi</a>
-<header class="site-header"><a class="brand" href="../../homepage.html"><img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt=""><span>SampaiKilat</span></a><nav aria-label="Navigasi utama"><a href="../../homepage.html">Beranda</a><a href="../cekresi/cekresi.php">Cek Resi</a><a href="../aboutus/AboutUs.html">Tentang Kami</a><a href="../help/Help.html">Bantuan</a></nav></header>
-<main id="utama" class="page-shell"><h1>Cek Lokasi</h1><nav class="service-nav" aria-label="Layanan pengiriman"><a href="../cekresi/cekresi.php">Cek Resi</a><a href="../cektarif/cektarif.html">Cek Tarif</a><a aria-current="page" href="CekLokasi.html">Cek Lokasi</a></nav><section class="card"><h2>Peta cakupan layanan</h2><p>Peta ini informasi cakupan statis, bukan pencarian drop point langsung. Hubungi layanan pelanggan untuk konfirmasi alamat dan titik layanan terdekat.</p><figure><img src="../../assets/ceklokasi/image/maps.png" alt="Peta cakupan layanan SampaiKilat"><figcaption>Cakupan dapat berubah. Konfirmasi sebelum mengantar paket.</figcaption></figure><div class="contact"><h2>Butuh konfirmasi lokasi?</h2><p><a href="tel:+62212222222">Telepon (021) 222 2222</a> atau <a href="mailto:sampai@kilat.co.id?subject=Konfirmasi%20cakupan%20layanan">email sampai@kilat.co.id</a>. Sertakan kecamatan, kota, dan kode pos.</p></div></section></main>
-<footer><div><strong>SampaiKilat</strong><p><a href="tel:+62212222222">(021) 222 2222</a> · <a href="mailto:sampai@kilat.co.id">sampai@kilat.co.id</a></p></div><nav aria-label="Navigasi footer"><a href="../aboutus/AboutUs.html">Tentang Kami</a><a href="../help/Help.html">Bantuan</a><a href="../rules/RulesPage.html">Larangan Pengiriman</a></nav></footer>
-</body></html>
+  <a class="skip-link" href="#utama">Lewati ke isi</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../../homepage.html">
+        <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+        <span class="brand__text">Sampai<em>Kilat</em></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
+        <a href="../../homepage.html">Beranda</a>
+        <a href="../cekresi/cekresi.php">Cek Resi</a>
+        <a href="../cektarif/cektarif.html">Cek Tarif</a>
+        <a href="../ceklokasi/CekLokasi.html" aria-current="page">Lokasi</a>
+        <a href="../aboutus/AboutUs.html">Tentang Kami</a>
+        <a href="../help/Help.html">Bantuan</a>
+        <a class="btn btn--sm site-nav__cta" href="../login/loginpage.html">Masuk staf</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="utama">
+    <div class="container lokasi-top">
+      <nav aria-label="Remah roti">
+        <ol class="breadcrumb">
+          <li><a href="../../homepage.html">Beranda</a></li>
+          <li aria-current="page">Cakupan layanan</li>
+        </ol>
+      </nav>
+    </div>
+
+    <section class="section lokasi-head" aria-labelledby="judul-cakupan">
+      <div class="container">
+        <p class="eyebrow">Cakupan dan lokasi</p>
+        <h1 id="judul-cakupan">Cakupan layanan</h1>
+        <p class="lead measure">Daftar di halaman ini diambil langsung dari data operasional yang tercatat: daerah supir dan posisi paket. Kami tidak mencantumkan estimasi waktu atau janji cakupan yang belum ada di sistem.</p>
+      </div>
+    </section>
+
+    <section class="section lokasi-stats-section" aria-labelledby="angka-cakupan">
+      <div class="container">
+        <h2 id="angka-cakupan">Angka cakupan saat ini</h2>
+        <div class="stat-grid lokasi-stats">
+          <div class="stat">
+            <span class="stat__label">Daerah operasional</span>
+            <span class="stat__value">16</span>
+            <span class="stat__meta">Daerah supir yang tercatat pada data kendaraan.</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Kendaraan aktif</span>
+            <span class="stat__value">28</span>
+            <span class="stat__meta">18 truk, 3 van, dan 7 motor.</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Gudang kota</span>
+            <span class="stat__value">5</span>
+            <span class="stat__meta">Tangerang, Jakarta, Depok, Bekasi, dan Bogor.</span>
+          </div>
+          <div class="stat">
+            <span class="stat__label">Layanan pelanggan</span>
+            <span class="stat__value">24 jam</span>
+            <span class="stat__meta">Telepon dan email, Senin sampai Minggu.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="daftar-daerah">
+      <div class="container">
+        <p class="eyebrow">Daerah yang tercatat</p>
+        <h2 id="daftar-daerah">Cari daerah Anda</h2>
+        <p class="measure muted">Kata kunci di bawah menyaring daftar daerah supir yang ada di sistem. Jika daerah Anda tidak muncul, artinya belum tercatat, bukan berarti pasti tidak dilayani: konfirmasi dulu ke layanan pelanggan.</p>
+
+        <form class="lokasi-search" role="search" novalidate>
+          <div class="field">
+            <label class="field__label" for="cari-daerah">Cari daerah atau kota</label>
+            <input class="input" type="search" id="cari-daerah" name="daerah" autocomplete="off" placeholder="Contoh: Beji atau Jakarta Timur" aria-describedby="cari-daerah-help">
+            <p class="field__help" id="cari-daerah-help">Daftar tersaring saat Anda mengetik, tanpa memuat ulang halaman.</p>
+          </div>
+          <button class="btn btn--secondary" type="reset">Bersihkan</button>
+          <p class="lokasi-search__count" id="hitung-cakupan" data-total-label="{n} daerah tercatat" data-match-label="{n} daerah cocok" role="status" aria-live="polite">16 daerah tercatat</p>
+        </form>
+
+        <div class="stack" id="daftar-cakupan">
+          <div class="card coverage-group">
+            <div class="card__head">
+              <h3>Jakarta</h3>
+              <span class="badge badge--muted"><span class="badge__dot"></span>9 kendaraan</span>
+            </div>
+            <ul class="coverage-list">
+              <li class="coverage-row">
+                <p class="coverage-row__name">Jakarta</p>
+                <p class="coverage-row__fleet">3 kendaraan: 2 truk, 1 van</p>
+                <p class="coverage-row__drivers">Supir: Kylina Bappe, Marcello, Rendy Purwanto</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Jakarta Barat</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 truk</p>
+                <p class="coverage-row__drivers">Supir: Cipto Harsono</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Jakarta Selatan</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 motor</p>
+                <p class="coverage-row__drivers">Supir: Eko Purwanto</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Jakarta Timur</p>
+                <p class="coverage-row__fleet">2 kendaraan: 2 truk</p>
+                <p class="coverage-row__drivers">Supir: Dadang Suryadi, Gani Rachman</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Jakarta Utara</p>
+                <p class="coverage-row__fleet">2 kendaraan: 1 truk, 1 motor</p>
+                <p class="coverage-row__drivers">Supir: Dedi Setiawan, Zainal Arifin</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card coverage-group">
+            <div class="card__head">
+              <h3>Tangerang dan sekitarnya</h3>
+              <span class="badge badge--muted"><span class="badge__dot"></span>6 kendaraan</span>
+            </div>
+            <ul class="coverage-list">
+              <li class="coverage-row">
+                <p class="coverage-row__name">Bojongsari</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 truk</p>
+                <p class="coverage-row__drivers">Supir: Sandi Pratama</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Tangerang</p>
+                <p class="coverage-row__fleet">3 kendaraan: 2 truk, 1 van</p>
+                <p class="coverage-row__drivers">Supir: Dodi Supratman, Lionel Pessi, Sergio Termos</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Tangerang Selatan</p>
+                <p class="coverage-row__fleet">2 kendaraan: 1 truk, 1 motor</p>
+                <p class="coverage-row__drivers">Supir: Candra Wijaya, Yoga Pratama</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card coverage-group">
+            <div class="card__head">
+              <h3>Depok</h3>
+              <span class="badge badge--muted"><span class="badge__dot"></span>4 kendaraan</span>
+            </div>
+            <ul class="coverage-list">
+              <li class="coverage-row">
+                <p class="coverage-row__name">Beji</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 truk</p>
+                <p class="coverage-row__drivers">Supir: Rizki Fadilah</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Depok</p>
+                <p class="coverage-row__fleet">3 kendaraan: 2 truk, 1 motor</p>
+                <p class="coverage-row__drivers">Supir: Bobby Indrawan, Lelek Pondega, Zinedane Zidane</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card coverage-group">
+            <div class="card__head">
+              <h3>Bekasi</h3>
+              <span class="badge badge--muted"><span class="badge__dot"></span>2 kendaraan</span>
+            </div>
+            <ul class="coverage-list">
+              <li class="coverage-row">
+                <p class="coverage-row__name">Bekasi</p>
+                <p class="coverage-row__fleet">2 kendaraan: 1 truk, 1 motor</p>
+                <p class="coverage-row__drivers">Supir: Budi Siregar, Jese Morinto</p>
+              </li>
+            </ul>
+          </div>
+
+          <div class="card coverage-group">
+            <div class="card__head">
+              <h3>Bogor</h3>
+              <span class="badge badge--muted"><span class="badge__dot"></span>7 kendaraan</span>
+            </div>
+            <ul class="coverage-list">
+              <li class="coverage-row">
+                <p class="coverage-row__name">Bogor</p>
+                <p class="coverage-row__fleet">3 kendaraan: 2 truk, 1 van</p>
+                <p class="coverage-row__drivers">Supir: C. Ronaldi, Ibrahim Diaz, Timen Suratno</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Bogor Barat</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 truk</p>
+                <p class="coverage-row__drivers">Supir: Luki Hartanto</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Bogor Selatan</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 truk</p>
+                <p class="coverage-row__drivers">Supir: Joko Susanto</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Bogor Tengah</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 motor</p>
+                <p class="coverage-row__drivers">Supir: Mahendra Wijaya</p>
+              </li>
+              <li class="coverage-row">
+                <p class="coverage-row__name">Bogor Utara</p>
+                <p class="coverage-row__fleet">1 kendaraan: 1 motor</p>
+                <p class="coverage-row__drivers">Supir: Indra Kurniawan</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="empty-state" id="cakupan-kosong" hidden>
+          <span class="empty-state__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path fill="currentColor" d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/></svg>
+          </span>
+          <h3>Daerah itu belum tercatat</h3>
+          <p>Belum ada daerah supir yang cocok dengan kata kunci tersebut di sistem. Tanyakan langsung ke layanan pelanggan dengan menyebutkan kecamatan, kota, dan kode pos Anda.</p>
+          <a class="btn btn--secondary btn--sm" href="mailto:sampai@kilat.co.id?subject=Konfirmasi%20cakupan%20layanan">Tanyakan lewat email</a>
+          <button class="btn btn--ghost btn--sm" type="button" id="reset-cari-cakupan">Tampilkan semua daerah</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="posisi-gudang">
+      <div class="container">
+        <div class="grid grid--aside">
+          <div class="card">
+            <div class="card__head">
+              <h2 id="posisi-gudang">Gudang dan posisi paket</h2>
+            </div>
+            <p class="muted">Setiap paket berpindah melalui salah satu dari lima gudang kota berikut sampai mencapai status akhir SAMPAI.</p>
+            <div class="table-wrap">
+              <table class="table table--stack">
+                <caption>Posisi paket pada sistem operasional SampaiKilat</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Kode</th>
+                    <th scope="col">Posisi</th>
+                    <th scope="col">Jenis</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Kode" class="cell-resi">PS-001</td>
+                    <td data-label="Posisi">WH Tangerang</td>
+                    <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Kode" class="cell-resi">PS-002</td>
+                    <td data-label="Posisi">WH Jakarta</td>
+                    <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Kode" class="cell-resi">PS-003</td>
+                    <td data-label="Posisi">WH Depok</td>
+                    <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Kode" class="cell-resi">PS-004</td>
+                    <td data-label="Posisi">WH Bekasi</td>
+                    <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Kode" class="cell-resi">PS-005</td>
+                    <td data-label="Posisi">WH Bogor</td>
+                    <td data-label="Jenis"><span class="badge badge--muted"><span class="badge__dot"></span>Gudang</span></td>
+                  </tr>
+                  <tr>
+                    <td data-label="Kode" class="cell-resi">PS-006</td>
+                    <td data-label="Posisi">SAMPAI</td>
+                    <td data-label="Jenis"><span class="badge badge--delivered"><span class="badge__dot"></span>Sampai</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card__head">
+              <h2>Konfirmasi daerah Anda</h2>
+            </div>
+            <p>Sebutkan kecamatan, kota, dan kode pos saat menghubungi kami, agar tim dapat memastikan daerah Anda ada di daftar supir.</p>
+            <div class="cluster">
+              <a class="btn btn--primary" href="tel:+62212222222">Telepon (021) 222 2222</a>
+              <a class="btn btn--secondary" href="mailto:sampai@kilat.co.id?subject=Konfirmasi%20cakupan%20layanan">Email konfirmasi cakupan</a>
+            </div>
+            <p class="field__help">Email sudah berisi subjek "Konfirmasi cakupan layanan". Layanan pelanggan aktif Senin sampai Minggu, 24 jam.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paper" aria-labelledby="peta-ilustrasi">
+      <div class="container">
+        <div class="card">
+          <div class="card__head">
+            <h2 id="peta-ilustrasi">Peta ilustrasi</h2>
+            <span class="badge badge--muted"><span class="badge__dot"></span>Ilustrasi tampilan</span>
+          </div>
+          <p class="measure">Gambar di bawah ini adalah gambar peta jalan contoh yang dipakai sebagai ilustrasi tampilan saja. Gambar ini bukan peta cakupan SampaiKilat, bukan pencarian titik antar, dan tidak digambar dari data operasional. Daerah yang benar-benar tercatat hanya yang ada pada daftar daerah di atas.</p>
+          <figure class="lokasi-map">
+            <img src="../../assets/ceklokasi/image/maps.png" alt="Contoh gambar peta jalan sebagai ilustrasi tampilan, bukan peta cakupan SampaiKilat" width="907" height="376" loading="lazy">
+            <figcaption>Ilustrasi tampilan saja, bukan peta waktu nyata dan bukan daftar titik antar. Untuk lokasi yang pasti, gunakan daftar daerah di atas atau hubungi layanan pelanggan.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="../../homepage.html">
+          <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+          <span class="brand__text">Sampai<em>Kilat</em></span>
+        </a>
+        <p>Paket jalan. Anda tenang. Layanan pengiriman domestik dengan status yang bisa dibaca.</p>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="foot-layanan">
+        <h2 id="foot-layanan">Layanan</h2>
+        <a href="../cekresi/cekresi.php">Cek resi</a>
+        <a href="../cektarif/cektarif.html">Cek tarif</a>
+        <a href="../ceklokasi/CekLokasi.html">Cakupan lokasi</a>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="foot-dukungan">
+        <h2 id="foot-dukungan">Dukungan</h2>
+        <a href="../help/Help.html">Bantuan dan komplain</a>
+        <a href="../rules/RulesPage.html">Larangan pengiriman</a>
+        <a href="../aboutus/AboutUs.html">Tentang kami</a>
+      </nav>
+      <div class="site-footer__col">
+        <h2 id="foot-kontak">Hubungi</h2>
+        <a href="tel:+62212222222">(021) 222 2222</a>
+        <a href="mailto:sampai@kilat.co.id">sampai@kilat.co.id</a>
+        <span>Senin–Minggu, 24 jam</span>
+      </div>
+    </div>
+    <div class="container site-footer__base">
+      <p>© 2026 SampaiKilat. Proyek akademik Secure Programming, BINUS University.</p>
+      <p>Jakarta · Tangerang · Depok · Bekasi · Bogor</p>
+    </div>
+  </footer>
+
+  <script src="../../javascript/site.js" defer></script>
+  <script src="../../javascript/pages/ceklokasi.js" defer></script>
+</body>
+</html>

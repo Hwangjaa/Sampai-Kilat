@@ -1,1 +1,47 @@
-:root{--ink:#172033;--muted:#526075;--line:#b8c1ce;--brand:#0756a4;--dark:#003d78;--bg:#f3f6fa;--focus:#e25d00}*{box-sizing:border-box}body{margin:0;min-width:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.skip-link{position:absolute;top:-4rem;left:1rem;padding:.6rem 1rem;background:#fff;color:var(--ink);z-index:2}.skip-link:focus{top:1rem}.site-header,footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem max(5vw,1rem);background:#fff}.site-header{border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:.45rem;color:var(--ink);font-size:1.2rem;font-weight:800;text-decoration:none}.brand img{width:2rem;height:2rem;object-fit:contain}.site-header nav,footer nav{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem}a{color:var(--brand);font-weight:650}a:hover{color:var(--dark)}a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.hero{position:relative;min-height:16rem;display:grid;place-items:center;text-align:center;color:#fff;background:#172033}.hero img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:.35}.hero div{position:relative;padding:2rem 1rem}.hero h1{margin:0;font-size:clamp(2rem,5vw,3rem)}.hero p{margin:.4rem 0 0}.content{width:min(100% - 2rem,960px);display:grid;grid-template-columns:1.2fr .8fr;gap:1.25rem;margin:2rem auto 3rem}.card{background:#fff;border:1px solid var(--line);border-radius:.75rem;padding:clamp(1rem,4vw,2rem);box-shadow:0 .25rem .8rem #17203314}.card h2{margin-top:0}.icon{width:3rem;height:3rem;object-fit:cover;border-radius:.35rem}.card li{margin:.5rem 0}.contact{align-self:start}.action{font-size:1.1rem;overflow-wrap:anywhere}.hint{color:var(--muted);font-size:.92rem}footer{margin-top:auto;border-top:1px solid var(--line);color:var(--muted)}footer p{margin:.25rem 0}@media(max-width:700px){.site-header,footer{align-items:flex-start;flex-direction:column}.content{grid-template-columns:1fr;margin-top:1rem}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+/* Bantuan dan komplain: tata letak khusus halaman.
+   Token, tombol, kartu, field, alert, badge, dan akordeon berasal dari site-system.css. */
+
+.help-top {
+  padding-top: var(--sp-5);
+}
+
+.help-head {
+  padding-bottom: 0;
+}
+
+.help-main {
+  padding-top: var(--sp-6);
+}
+
+.help-form .form-grid {
+  margin-top: var(--sp-4);
+}
+
+.help-mailto-actions {
+  margin-top: var(--sp-4);
+}
+
+.help-links {
+  display: grid;
+  gap: 0.45rem;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.help-aside h2 {
+  font-size: var(--fs-h3);
+}
+
+@media (max-width: 520px) {
+  .help-form .form-actions .btn {
+    width: 100%;
+  }
+}
+
+/* Perbaikan lapisan drawer: .site-header punya stacking context sendiri (z-index 40),
+   sedangkan .nav-scrim memakai z-index 60. Tanpa perbaikan ini scrim menutupi panel
+   navigasi sehingga klik pada tautan drawer tertangkap scrim dan drawer menutup.
+   Hanya berlaku saat drawer terbuka. */
+body.nav-open .site-header {
+  z-index: calc(var(--z-drawer) + 2);
+}

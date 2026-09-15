@@ -1,145 +1,206 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SampaiKilat - Larangan Pengiriman</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../css/rules/RulesPage.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Sembilan kategori barang yang dilarang dikirim lewat SampaiKilat, dengan pencarian jenis barang dan catatan KUHP 479p.">
+  <title>Larangan Pengiriman | SampaiKilat</title>
+  <link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/site-system.css">
+  <link rel="stylesheet" href="../../css/rules/RulesPage.css">
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
-                alt="Logo">
-            <span>SampaiKilat</span>
-        </div>
-        <nav>
-            <a href="../../homepage.html">Home</a>
-            <a href="../cekresi/cekresi.php">Cek Resi</a>
-            <a href="../aboutus/AboutUs.html">About Us</a>
-            <a href="../help/Help.html">Help</a>
-        </nav>
-    </header>
+  <a class="skip-link" href="#utama">Lewati ke isi</a>
 
-    <!-- Main Content -->
-    <div class="container">
-        <h1>LARANGAN PENGIRIMAN</h1>
-        <div class="grid-container">
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-1.png" alt="Bahan Peledak">
-                <div class="text">
-                    <h2>Bahan Peledak</h2>
-                    <p>Peluru, Petasan, Kembang Api, Bahan Peledak</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-2.png" alt="Bahan Gas">
-                <div class="text">
-                    <h2>Bahan Gas</h2>
-                    <p>Aerosol, Korek Gas</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-3.png" alt="Cairan Yang Mudah Terbakar">
-                <div class="text">
-                    <h2>Cairan Yang Mudah Terbakar</h2>
-                    <p>Cat, Alkohol</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-4.png" alt="Bahan Padat Yang Mudah Terbakar">
-                <div class="text">
-                    <h2>Bahan Padat Yang Mudah Terbakar</h2>
-                    <p>Korek Api, Lilin</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-5.png" alt="Zat Pengoksidasi & Peroksida Organik">
-                <div class="text">
-                    <h2>Zat Pengoksidasi & Peroksida Organik</h2>
-                    <p>Kalsium Klorat</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-6.png" alt="Racun & Zat Menular">
-                <div class="text">
-                    <h2>Racun & Zat Menular</h2>
-                    <p>Racun, Limbah Medis</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-7.png" alt="Bahan Radioaktif">
-                <div class="text">
-                    <h2>Bahan Radioaktif</h2>
-                    <p>Nuklir</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-8.png" alt="Bahan Korosif">
-                <div class="text">
-                    <h2>Bahan Korosif</h2>
-                    <p>Baterai, Merkuri</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="../../assets/rulespage/image/dg-9.png" alt="Bahan Berbahaya Lainnya">
-                <div class="text">
-                    <h2>Bahan Berbahaya Lainnya</h2>
-                    <p>Baterai Lithium, Magnet, Biang Es</p>
-                </div>
-            </div>
-        </div>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="../../homepage.html">
+        <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+        <span class="brand__text">Sampai<em>Kilat</em></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
+        <a href="../../homepage.html">Beranda</a>
+        <a href="../cekresi/cekresi.php">Cek Resi</a>
+        <a href="../cektarif/cektarif.html">Cek Tarif</a>
+        <a href="../ceklokasi/CekLokasi.html">Lokasi</a>
+        <a href="../aboutus/AboutUs.html">Tentang Kami</a>
+        <a href="../help/Help.html">Bantuan</a>
+        <a class="btn btn--sm site-nav__cta" href="../login/loginpage.html">Masuk staf</a>
+      </nav>
+    </div>
+  </header>
 
-        <div class="footer-info">
-            <p><b>KUHP 479p</b></p>
-            <p>Barang siapa memberikan keterangan yang diketahuinya adalah palsu dan karena perbuatan itu membahayakan
-                keamanan pesawat udara dalam penerbangan, dipidana dengan penjara selama-lamanya lima belas tahun.</p>
-        </div>
+  <main id="utama">
+    <div class="container rules-top">
+      <nav aria-label="Remah roti">
+        <ol class="breadcrumb">
+          <li><a href="../../homepage.html">Beranda</a></li>
+          <li aria-current="page">Larangan pengiriman</li>
+        </ol>
+      </nav>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <div class="footer-logo-container">
-                    <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
-                        alt="Logo" class="footer-logo">
-                    <p><b>SampaiKilat</b></p>
-                </div>
-                <p><b>CUSTOMER SERVICE</b></p>
-                <p><img src="../../assets/homepage/image/684846.png" alt=""> (021) 222 2222</p>
-                <p><img src="../../assets/homepage/image/png-transparent-computer-icons-envelope-mail-envelope-miscellaneous-angle-triangle-removebg-preview (1).png"
-                        alt=""> sampai@kilat.co.id</p>
-                <div class="social-media">
-                    <img src="../../assets/homepage/image/Twitter-new-cross-mark-Icon-PNG-X-removebg-preview.png"
-                        alt="Facebook">
-                    <img src="../../assets/homepage/image/59439.png" alt="Instagram">
-                    <img src="../../assets/homepage/image/images-removebg-preview.png" alt="Twitter">
-                    <img src="../../assets/homepage/image/png-transparent-instagram-vector-brand-logos-icon-removebg-preview.png"
-                        alt="Instagram">
-                </div>
-            </div>
-            <div class="footer-section">
-                <p><b>PERUSAHAAN</b></p>
-                <a href="../aboutus/AboutUs.html">Profil Perusahaan</a><br>
-                <a href="../help/Help.html">Bantuan</a>
-            </div>
-            <div class="footer-section">
-                <p><b>LAYANAN</b></p>
-                <a href="../cekresi/cekresi.php">Lacak Pengiriman</a><br>
-                <a href="../cektarif/cektarif.html">Cek Tarif</a><br>
-                <a href="../ceklokasi/CekLokasi.html">Lokasi</a>
-            </div>
-            <div class="footer-section">
-                <p><b>Peraturan</b></p>
-                <a href="../rules/RulesPage.html">Larangan Pengiriman</a>
-            </div>
-        </div>
-    </footer>
-</body>
+    <section class="section rules-head" aria-labelledby="judul-larangan">
+      <div class="container">
+        <p class="eyebrow">Aturan pengiriman</p>
+        <h1 id="judul-larangan">Larangan pengiriman</h1>
+        <p class="lead measure">Sembilan kategori barang berikut tidak boleh dikirim lewat SampaiKilat, baik jalur darat maupun udara. Periksa daftarnya sebelum menyerahkan paket ke gudang.</p>
+      </div>
+    </section>
 
+    <section class="section section--paper" aria-labelledby="kategori-larangan">
+      <div class="container">
+        <h2 id="kategori-larangan">Kategori barang yang dilarang</h2>
+
+        <form class="rules-search" role="search" novalidate>
+          <div class="field">
+            <label class="field__label" for="cari-barang">Cari jenis barang</label>
+            <input class="input" type="search" id="cari-barang" name="cari" autocomplete="off" placeholder="Contoh: korek api" aria-describedby="cari-barang-help">
+            <p class="field__help" id="cari-barang-help">Daftar tersaring saat Anda mengetik, tanpa memuat ulang halaman.</p>
+          </div>
+          <button class="btn btn--secondary" type="reset">Bersihkan</button>
+          <p class="rules-search__count" id="hitung-larangan" data-total-label="{n} kategori ditampilkan" data-match-label="{n} kategori cocok" role="status" aria-live="polite">9 kategori ditampilkan</p>
+        </form>
+
+        <ul class="grid grid--3 rules-grid" id="daftar-larangan">
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-1.png" alt="Piktogram bahan peledak" width="140" height="100" loading="lazy">
+            <h3>Bahan Peledak</h3>
+            <ul class="rules-card__items">
+              <li>Peluru</li>
+              <li>Petasan</li>
+              <li>Kembang api</li>
+              <li>Bahan peledak</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-2.png" alt="Piktogram bahan gas" width="140" height="100" loading="lazy">
+            <h3>Bahan Gas</h3>
+            <ul class="rules-card__items">
+              <li>Aerosol</li>
+              <li>Korek gas</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-3.png" alt="Piktogram cairan yang mudah terbakar" width="140" height="100" loading="lazy">
+            <h3>Cairan Yang Mudah Terbakar</h3>
+            <ul class="rules-card__items">
+              <li>Cat</li>
+              <li>Alkohol</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-4.png" alt="Piktogram bahan padat yang mudah terbakar" width="140" height="100" loading="lazy">
+            <h3>Bahan Padat Yang Mudah Terbakar</h3>
+            <ul class="rules-card__items">
+              <li>Korek api</li>
+              <li>Lilin</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-5.png" alt="Piktogram zat pengoksidasi dan peroksida organik" width="140" height="100" loading="lazy">
+            <h3>Zat Pengoksidasi &amp; Peroksida Organik</h3>
+            <ul class="rules-card__items">
+              <li>Kalsium klorat</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-6.png" alt="Piktogram racun dan zat menular" width="140" height="100" loading="lazy">
+            <h3>Racun &amp; Zat Menular</h3>
+            <ul class="rules-card__items">
+              <li>Racun</li>
+              <li>Limbah medis</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-7.png" alt="Piktogram bahan radioaktif" width="140" height="100" loading="lazy">
+            <h3>Bahan Radioaktif</h3>
+            <ul class="rules-card__items">
+              <li>Nuklir</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-8.png" alt="Piktogram bahan korosif" width="140" height="100" loading="lazy">
+            <h3>Bahan Korosif</h3>
+            <ul class="rules-card__items">
+              <li>Baterai</li>
+              <li>Merkuri</li>
+            </ul>
+          </li>
+          <li class="card rules-card">
+            <img class="rules-card__icon" src="../../assets/rulespage/image/dg-9.png" alt="Piktogram bahan berbahaya lainnya" width="140" height="100" loading="lazy">
+            <h3>Bahan Berbahaya Lainnya</h3>
+            <ul class="rules-card__items">
+              <li>Baterai lithium</li>
+              <li>Magnet</li>
+              <li>Biang es</li>
+            </ul>
+          </li>
+        </ul>
+
+        <div class="empty-state" id="larangan-kosong" hidden>
+          <span class="empty-state__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" focusable="false"><path fill="currentColor" d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2Zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12Z"/></svg>
+          </span>
+          <h3>Tidak ada kategori yang cocok</h3>
+          <p>Kata kunci itu belum ada di daftar sembilan kategori larangan. Coba kata lain seperti "baterai", "korek", atau "racun".</p>
+          <button class="btn btn--secondary btn--sm" type="button" id="reset-cari-larangan">Tampilkan semua kategori</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="catatan-hukum">
+      <div class="container container--narrow">
+        <h2 id="catatan-hukum">Catatan hukum</h2>
+        <div class="alert alert--warn">
+          <span>
+            <strong class="alert__title">KUHP 479p</strong>
+            Barang siapa memberikan keterangan yang diketahuinya adalah palsu dan karena perbuatan itu membahayakan keamanan pesawat udara dalam penerbangan, dipidana dengan penjara selama-lamanya lima belas tahun.
+          </span>
+        </div>
+        <p class="rules-help">Ragu apakah barang Anda termasuk kategori di atas? Tanyakan dulu ke layanan pelanggan di halaman <a href="../help/Help.html">Bantuan dan komplain</a> sebelum paket diserahkan.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="../../homepage.html">
+          <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+          <span class="brand__text">Sampai<em>Kilat</em></span>
+        </a>
+        <p>Paket jalan. Anda tenang. Layanan pengiriman domestik dengan status yang bisa dibaca.</p>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="foot-layanan">
+        <h2 id="foot-layanan">Layanan</h2>
+        <a href="../cekresi/cekresi.php">Cek resi</a>
+        <a href="../cektarif/cektarif.html">Cek tarif</a>
+        <a href="../ceklokasi/CekLokasi.html">Cakupan lokasi</a>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="foot-dukungan">
+        <h2 id="foot-dukungan">Dukungan</h2>
+        <a href="../help/Help.html">Bantuan dan komplain</a>
+        <a href="../rules/RulesPage.html">Larangan pengiriman</a>
+        <a href="../aboutus/AboutUs.html">Tentang kami</a>
+      </nav>
+      <div class="site-footer__col">
+        <h2 id="foot-kontak">Hubungi</h2>
+        <a href="tel:+62212222222">(021) 222 2222</a>
+        <a href="mailto:sampai@kilat.co.id">sampai@kilat.co.id</a>
+        <span>Senin–Minggu, 24 jam</span>
+      </div>
+    </div>
+    <div class="container site-footer__base">
+      <p>© 2026 SampaiKilat. Proyek akademik Secure Programming, BINUS University.</p>
+      <p>Jakarta · Tangerang · Depok · Bekasi · Bogor</p>
+    </div>
+  </footer>
+
+  <script src="../../javascript/site.js" defer></script>
+  <script src="../../javascript/pages/rules.js" defer></script>
+</body>
 </html>

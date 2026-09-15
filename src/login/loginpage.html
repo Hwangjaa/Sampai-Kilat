@@ -1,33 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SampaiKilat - Masuk</title>
-    <link rel="stylesheet" href="../../css/login/login.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="description" content="Halaman masuk untuk admin dan staf gudang SampaiKilat.">
+  <title>Masuk Staf | SampaiKilat</title>
+  <link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/site-system.css">
+  <link rel="stylesheet" href="../../css/login/login.css">
 </head>
-<body>
-    <!-- Video Background -->
-    <div class="video-background">
-        <video autoplay muted loop playsinline>
-            <source src="../../assets/loginpage/video/FINAL CUT.mp4" type="video/mp4">
-            Browser Anda tidak mendukung video HTML5.
-        </video>
-    </div>
+<body class="login-page on-dark">
+  <a class="skip-link" href="#login-form">Lewati ke formulir masuk</a>
 
-    <!-- Login Container -->
-    <div class="login-container">
-        <form action="../../controller/login/logincontroller.php" method="post" autocomplete="on">
-            <div class="form-group">
-                <label for="username"><b>Username</b></label>
-                <input type="text" id="username" name="username" autocomplete="username" placeholder="Masukkan username" required>
-            </div>
-            <div class="form-group">
-                <label for="password"><b>Password</b></label>
-                <input type="password" id="password" name="password" autocomplete="current-password" placeholder="Masukkan password" required>
-            </div>
-            <button type="submit">MASUK</button>
-        </form>
+  <div class="login-visual" aria-hidden="true">
+    <video autoplay muted loop playsinline preload="metadata" poster="../../assets/video/hero-poster.jpg">
+      <source src="../../assets/video/hero-loop-720.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <main class="login-shell">
+    <a class="brand login-brand" href="../../homepage.html">
+      <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+      <span class="brand__text">Sampai<em>Kilat</em></span>
+    </a>
+
+    <div class="login-body">
+      <p class="eyebrow">Area operasional</p>
+      <h1>Masuk untuk mengelola perjalanan paket.</h1>
+      <p class="login-lead">Halaman ini khusus admin dan staf gudang SampaiKilat. Dari sini Anda bisa membuat pengiriman, memperbarui posisi paket, dan mendaftarkan pelanggan baru.</p>
+
+      <div id="login-error" hidden></div>
+
+      <form id="login-form" class="login-form" action="../../controller/login/logincontroller.php" method="post" autocomplete="on" data-validate novalidate>
+        <div data-form-alert hidden></div>
+        <div class="field">
+          <label class="field__label" for="username">Username</label>
+          <input class="input" type="text" id="username" name="username" autocomplete="username" maxlength="30" required
+                 data-msg-required="Isi username akun staf." autocapitalize="none" spellcheck="false">
+          <p class="field__error" data-error-for="username" role="alert"></p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="password">Password</label>
+          <div class="login-password">
+            <input class="input" type="password" id="password" name="password" autocomplete="current-password" required
+                   data-msg-required="Isi password akun staf.">
+            <button class="login-password__toggle" type="button" id="toggle-password" aria-pressed="false" aria-controls="password">Tampilkan</button>
+          </div>
+          <p class="field__error" data-error-for="password" role="alert"></p>
+        </div>
+        <button class="btn btn--signal btn--lg btn--block" type="submit">
+          <span class="btn__spinner" aria-hidden="true"></span><span class="btn__label">Masuk</span>
+        </button>
+      </form>
+
+      <div class="login-meta">
+        <a href="../../homepage.html">Kembali ke beranda</a>
+        <p>Akun staf dibuat oleh admin perusahaan. Kalau Anda lupa kata sandi, hubungi admin atau layanan pelanggan di <a href="tel:+62212222222">(021) 222 2222</a>.</p>
+      </div>
     </div>
+  </main>
+
+  <script src="../../javascript/site.js" defer></script>
+  <script src="../../javascript/pages/login.js" defer></script>
 </body>
 </html>

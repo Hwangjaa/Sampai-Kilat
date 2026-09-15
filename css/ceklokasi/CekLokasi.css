@@ -1,1 +1,103 @@
-:root{--ink:#172033;--muted:#526075;--line:#b8c1ce;--brand:#0756a4;--dark:#003d78;--bg:#f3f6fa;--focus:#e25d00}*{box-sizing:border-box}body{margin:0;min-width:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.skip-link{position:absolute;top:-4rem;left:1rem;padding:.6rem 1rem;background:#fff;color:var(--ink);z-index:2}.skip-link:focus{top:1rem}.site-header,footer{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem max(5vw,1rem);background:#fff}.site-header{border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:.45rem;color:var(--ink);font-size:1.2rem;font-weight:800;text-decoration:none}.brand img{width:2rem;height:2rem;object-fit:contain}.site-header nav,footer nav{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem}a{color:var(--brand);font-weight:650}a:hover{color:var(--dark)}a:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.page-shell{width:min(100% - 2rem,960px);margin:2rem auto 3rem}h1{text-align:center;font-size:clamp(2rem,5vw,2.8rem);margin:0 0 1rem}.service-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}.service-nav a{padding:.45rem .9rem;border:1px solid var(--brand);border-radius:99px;text-decoration:none}.service-nav [aria-current="page"]{background:var(--brand);color:#fff}.card{padding:clamp(1rem,4vw,2rem);background:#fff;border:1px solid var(--line);border-radius:.75rem;box-shadow:0 .25rem .8rem #17203314}.card h2{margin-top:0}figure{margin:1.5rem 0}figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:.4rem}figcaption{margin-top:.5rem;color:var(--muted)}.contact{padding-top:1rem;border-top:1px solid var(--line)}footer{margin-top:auto;border-top:1px solid var(--line);color:var(--muted)}footer p{margin:.25rem 0}@media(max-width:600px){.site-header,footer{align-items:flex-start;flex-direction:column}.page-shell{margin-top:1rem}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+/* Cakupan layanan: tata letak khusus halaman.
+   Token, tombol, kartu, field, badge, tabel, dan statistik berasal dari site-system.css. */
+
+.lokasi-top {
+  padding-top: var(--sp-5);
+}
+
+.lokasi-head {
+  padding-bottom: 0;
+}
+
+.lokasi-stats-section {
+  padding-top: var(--sp-6);
+}
+
+.lokasi-stats {
+  margin-top: var(--sp-4);
+}
+
+.lokasi-search {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: var(--sp-3);
+  margin: var(--sp-5) 0 var(--sp-5);
+}
+
+.lokasi-search__count {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+}
+
+.coverage-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.coverage-row {
+  display: grid;
+  gap: 0.15rem;
+  padding-block: var(--sp-3);
+  border-top: 1px solid var(--line);
+}
+
+.coverage-row:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+
+.coverage-row__name {
+  margin: 0;
+  color: var(--navy-900);
+  font-family: var(--font-display);
+  font-weight: 700;
+}
+
+.coverage-row__fleet {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+}
+
+.coverage-row__drivers {
+  margin: 0;
+  color: var(--ink-faint);
+  font-size: var(--fs-sm);
+}
+
+.lokasi-map {
+  margin: var(--sp-5) 0 0;
+}
+
+.lokasi-map img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.lokasi-map figcaption {
+  margin-top: var(--sp-2);
+  color: var(--ink-soft);
+  font-size: var(--fs-sm);
+}
+
+@media (max-width: 560px) {
+  .lokasi-search {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Perbaikan lapisan drawer: .site-header punya stacking context sendiri (z-index 40),
+   sedangkan .nav-scrim memakai z-index 60. Tanpa perbaikan ini scrim menutupi panel
+   navigasi sehingga klik pada tautan drawer tertangkap scrim dan drawer menutup.
+   Hanya berlaku saat drawer terbuka. */
+body.nav-open .site-header {
+  z-index: calc(var(--z-drawer) + 2);
+}

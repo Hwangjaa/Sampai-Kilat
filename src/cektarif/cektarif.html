@@ -3,56 +3,183 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hitung estimasi biaya kirim SampaiKilat berdasarkan berat dan volume paket, dengan tiga pilihan layanan.">
   <title>Cek Tarif Pengiriman | SampaiKilat</title>
+  <link rel="icon" href="../../assets/brand/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../css/site-system.css">
   <link rel="stylesheet" href="../../css/cektarif/cektarif.css">
 </head>
 <body>
   <a class="skip-link" href="#utama">Lewati ke isi</a>
+
   <header class="site-header">
-    <a class="brand" href="../../homepage.html"><img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt=""><span>SampaiKilat</span></a>
-    <nav aria-label="Navigasi utama"><a href="../../homepage.html">Beranda</a><a href="../cekresi/cekresi.php">Cek Resi</a><a href="../aboutus/AboutUs.html">Tentang Kami</a><a href="../help/Help.html">Bantuan</a></nav>
+    <div class="container site-header__inner">
+      <a class="brand" href="../../homepage.html">
+        <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+        <span class="brand__text">Sampai<em>Kilat</em></span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Buka menu" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span><span class="nav-toggle__label">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Navigasi utama">
+        <a href="../../homepage.html">Beranda</a>
+        <a href="../cekresi/cekresi.php">Cek Resi</a>
+        <a href="cektarif.html" aria-current="page">Cek Tarif</a>
+        <a href="../ceklokasi/CekLokasi.html">Lokasi</a>
+        <a href="../aboutus/AboutUs.html">Tentang Kami</a>
+        <a href="../help/Help.html">Bantuan</a>
+        <a class="btn btn--sm site-nav__cta" href="../login/loginpage.html">Masuk staf</a>
+      </nav>
+    </div>
   </header>
-  <main id="utama" class="page-shell">
-    <h1>Cek Tarif</h1>
-    <nav class="service-nav" aria-label="Layanan pengiriman"><a href="../cekresi/cekresi.php">Cek Resi</a><a aria-current="page" href="cektarif.html">Cek Tarif</a><a href="../ceklokasi/CekLokasi.html">Cek Lokasi</a></nav>
-    <section class="card" aria-labelledby="form-title">
-      <h2 id="form-title">Estimasi biaya kirim</h2>
-      <p class="intro">Isi alamat dan ukuran paket. Tarif ini estimasi untuk perbandingan layanan.</p>
-      <form id="tarif-form" novalidate>
-        <div class="field wide"><label for="sender">Alamat pengirim</label><input id="sender" name="sender" autocomplete="street-address" required aria-describedby="sender-error"><p class="error" id="sender-error"></p></div>
-        <div class="field wide"><label for="destination">Alamat tujuan</label><input id="destination" name="destination" autocomplete="street-address" required aria-describedby="destination-error"><p class="error" id="destination-error"></p></div>
-        <div class="field"><label for="weight">Berat (kg)</label><input id="weight" name="weight" inputmode="decimal" type="number" min="0.1" step="0.1" required aria-describedby="weight-error"><p class="error" id="weight-error"></p></div>
-        <div class="field"><label for="length">Panjang (cm)</label><input id="length" name="length" inputmode="decimal" type="number" min="1" step="0.1" required aria-describedby="length-error"><p class="error" id="length-error"></p></div>
-        <div class="field"><label for="width">Lebar (cm)</label><input id="width" name="width" inputmode="decimal" type="number" min="1" step="0.1" required aria-describedby="width-error"><p class="error" id="width-error"></p></div>
-        <div class="field"><label for="height">Tinggi (cm)</label><input id="height" name="height" inputmode="decimal" type="number" min="1" step="0.1" required aria-describedby="height-error"><p class="error" id="height-error"></p></div>
-        <button type="submit">Cek tarif</button>
-      </form>
-      <div id="form-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
-      <section id="tarif-result" class="result" hidden aria-labelledby="result-title">
-        <h2 id="result-title">Estimasi tarif</h2>
-        <p id="chargeable-weight"></p>
-        <div class="table-wrap"><table><thead><tr><th scope="col">Layanan</th><th scope="col">Estimasi tiba</th><th scope="col">Tarif</th></tr></thead><tbody id="tarif-rows"></tbody></table></div>
-        <p class="note">Tarif akhir dapat berubah setelah paket ditimbang dan alamat diverifikasi.</p>
+
+  <main id="utama" class="container page">
+    <nav aria-label="Remah roti">
+      <ol class="breadcrumb"><li><a href="../../homepage.html">Beranda</a></li><li aria-current="page">Cek Tarif</li></ol>
+    </nav>
+
+    <div class="page-head">
+      <div>
+        <h1>Cek tarif pengiriman</h1>
+        <p>Estimasi dihitung dari berat paket dan berat volume (panjang × lebar × tinggi ÷ 5000). Yang dipakai adalah angka terbesar di antara keduanya.</p>
+      </div>
+    </div>
+
+    <div class="grid grid--aside">
+      <section class="card" aria-labelledby="form-title">
+        <h2 id="form-title">Data paket</h2>
+        <form id="tarif-form" data-validate novalidate>
+          <div data-form-alert hidden></div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="field__label" for="weight">Berat paket (kg)</label>
+              <input class="input" id="weight" name="weight" type="number" inputmode="decimal" min="0.1" step="0.1" required
+                     data-msg-required="Isi berat paket." data-msg-min="Berat minimal 0,1 kg." aria-describedby="weight-help">
+              <p class="field__help" id="weight-help">Timbang paket termasuk kemasannya.</p>
+              <p class="field__error" data-error-for="weight" role="alert"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="length">Panjang (cm)</label>
+              <input class="input" id="length" name="length" type="number" inputmode="decimal" min="1" step="0.1" required
+                     data-msg-required="Isi panjang paket." data-msg-min="Panjang minimal 1 cm.">
+              <p class="field__help">Ukur sisi terpanjang.</p>
+              <p class="field__error" data-error-for="length" role="alert"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="width">Lebar (cm)</label>
+              <input class="input" id="width" name="width" type="number" inputmode="decimal" min="1" step="0.1" required
+                     data-msg-required="Isi lebar paket." data-msg-min="Lebar minimal 1 cm.">
+              <p class="field__help">Ukur sisi pendek alas.</p>
+              <p class="field__error" data-error-for="width" role="alert"></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="height">Tinggi (cm)</label>
+              <input class="input" id="height" name="height" type="number" inputmode="decimal" min="1" step="0.1" required
+                     data-msg-required="Isi tinggi paket." data-msg-min="Tinggi minimal 1 cm.">
+              <p class="field__help">Diukur dari alas sampai tutup.</p>
+              <p class="field__error" data-error-for="height" role="alert"></p>
+            </div>
+            <div class="field field--wide">
+              <label class="field__label" for="kota">Kota tujuan <span class="muted">(opsional)</span></label>
+              <select class="select" id="kota" name="kota">
+                <option value="">Pilih kota tujuan</option>
+                <option>Jakarta</option>
+                <option>Tangerang</option>
+                <option>Tangerang Selatan</option>
+                <option>Depok</option>
+                <option>Bekasi</option>
+                <option>Bogor</option>
+                <option>Kabupaten Tangerang</option>
+              </select>
+              <p class="field__help">Kota tujuan tidak mengubah estimasi. Nilainya ikut terkirim kalau Anda meminta konfirmasi tarif ke petugas.</p>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn--lg" type="submit">
+              <span class="btn__spinner" aria-hidden="true"></span><span class="btn__label">Hitung estimasi</span>
+            </button>
+            <button class="btn btn--secondary" type="reset">Bersihkan</button>
+          </div>
+        </form>
+        <p class="tarif-note">
+          Estimasi ini alat bantu perbandingan, bukan penawaran akhir. Tarif pasti muncul setelah paket ditimbang dan alamat tujuan diverifikasi di konter atau oleh petugas.
+        </p>
       </section>
-    </section>
+
+      <div class="tarif-aside">
+      <section class="card tarif-result" id="tarif-result" hidden aria-labelledby="result-title">
+        <div class="card__head">
+          <h2 id="result-title">Estimasi tarif</h2>
+          <span class="badge badge--transit"><span class="badge__dot" aria-hidden="true"></span>Estimasi</span>
+        </div>
+        <p class="tarif-result__weight" id="chargeable-weight"></p>
+        <div class="table-wrap">
+          <table class="table table--stack">
+            <caption class="sr-only">Perbandingan tiga layanan pengiriman</caption>
+            <thead>
+              <tr><th scope="col">Layanan</th><th scope="col">Estimasi tiba</th><th scope="col">Tarif</th></tr>
+            </thead>
+            <tbody id="tarif-rows"></tbody>
+          </table>
+        </div>
+        <div class="tarif-result__actions">
+          <a class="btn" id="kirim-rincian" href="mailto:sampai@kilat.co.id">Kirim rincian ke petugas</a>
+          <button class="btn btn--secondary" type="button" id="ulangi">Ubah data paket</button>
+        </div>
+        <p class="muted tarif-result__status" id="tarif-status" role="status" aria-live="polite"></p>
+        <p class="muted tarif-result__hint">Tombol di atas membuka aplikasi email Anda dengan rincian yang sudah terisi.</p>
+      </section>
+
+      <section class="card tarif-empty" id="tarif-empty" aria-labelledby="empty-title">
+        <h2 id="empty-title" class="sr-only">Belum ada estimasi</h2>
+        <div class="empty-state">
+          <span class="empty-state__icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16v10H4z"></path><path d="M9 7V5h6v2"></path><path d="M12 11v3"></path></svg>
+          </span>
+          <h3>Hasil muncul di sini</h3>
+          <p>Isi berat dan ukuran paket, lalu tekan Hitung estimasi. Tiga layanan akan dibandingkan berdampingan.</p>
+        </div>
+      </section>
+      </div>
+    </div>
   </main>
-  <footer><div><strong>SampaiKilat</strong><p>Butuh bantuan? <a href="tel:+62212222222">(021) 222 2222</a> · <a href="mailto:sampai@kilat.co.id">sampai@kilat.co.id</a></p></div><nav aria-label="Navigasi footer"><a href="../aboutus/AboutUs.html">Tentang Kami</a><a href="../help/Help.html">Bantuan</a><a href="../rules/RulesPage.html">Larangan Pengiriman</a></nav></footer>
-  <script>
-    const form = document.querySelector('#tarif-form');
-    const result = document.querySelector('#tarif-result');
-    const status = document.querySelector('#form-status');
-    const fields = ['sender', 'destination', 'weight', 'length', 'width', 'height'];
-    const rupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 });
-    function error(id, message) { const input = document.querySelector('#' + id); input.setAttribute('aria-invalid', Boolean(message)); document.querySelector('#' + id + '-error').textContent = message; }
-    form.addEventListener('submit', (event) => {
-      event.preventDefault(); let first; let valid = true;
-      fields.forEach((id) => { const input = document.querySelector('#' + id); const numeric = ['weight', 'length', 'width', 'height'].includes(id); const message = !input.value.trim() ? 'Wajib diisi.' : numeric && (!(Number(input.value) > 0)) ? 'Masukkan angka lebih dari 0.' : ''; error(id, message); if (message) { valid = false; first ||= input; } });
-      if (!valid) { result.hidden = true; status.textContent = 'Periksa kolom yang ditandai.'; first.focus(); return; }
-      const packageWeight = Number(document.querySelector('#weight').value); const volumeWeight = (Number(document.querySelector('#length').value) * Number(document.querySelector('#width').value) * Number(document.querySelector('#height').value)) / 5000; const billable = Math.max(packageWeight, volumeWeight); const regular = Math.ceil(5000 + billable * 2000);
-      document.querySelector('#chargeable-weight').textContent = 'Berat tagihan: ' + billable.toLocaleString('id-ID', { maximumFractionDigits: 2 }) + ' kg.';
-      document.querySelector('#tarif-rows').innerHTML = [['Same Day', 'Hari yang sama', regular * 2], ['Overnight', '1 hari', Math.ceil(regular * 1.5)], ['Regular', '2 hari', regular]].map(([service, eta, price]) => '<tr><th scope="row">' + service + '</th><td>' + eta + '</td><td>' + rupiah.format(price) + '</td></tr>').join('');
-      result.hidden = false; status.textContent = 'Estimasi tarif tersedia.'; result.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
-    });
-  </script>
+
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div class="site-footer__brand">
+        <a class="brand" href="../../homepage.html">
+          <svg class="brand__mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 2 4 13.2h5.6L9.4 22 19 10.8h-5.6z"/></svg>
+          <span class="brand__text">Sampai<em>Kilat</em></span>
+        </a>
+        <p>Paket jalan. Anda tenang. Layanan pengiriman domestik dengan status yang bisa dibaca.</p>
+      </div>
+      <nav class="site-footer__col" aria-labelledby="foot-layanan">
+        <h2 id="foot-layanan">Layanan</h2>
+        <a href="../cekresi/cekresi.php">Cek resi</a>
+        <a href="cektarif.html">Cek tarif</a>
+        <a href="../ceklokasi/CekLokasi.html">Cakupan lokasi</a>
+      </nav>
+      <nav class="site-footer__col" aria-labelledby="foot-dukungan">
+        <h2 id="foot-dukungan">Dukungan</h2>
+        <a href="../help/Help.html">Bantuan dan komplain</a>
+        <a href="../rules/RulesPage.html">Larangan pengiriman</a>
+        <a href="../aboutus/AboutUs.html">Tentang kami</a>
+      </nav>
+      <div class="site-footer__col">
+        <h2 id="foot-kontak">Hubungi</h2>
+        <a href="tel:+62212222222">(021) 222 2222</a>
+        <a href="mailto:sampai@kilat.co.id">sampai@kilat.co.id</a>
+        <span>Senin–Minggu, 24 jam</span>
+      </div>
+    </div>
+    <div class="container site-footer__base">
+      <p>© 2026 SampaiKilat. Proyek akademik Secure Programming, BINUS University.</p>
+      <p>Jakarta · Tangerang · Depok · Bekasi · Bogor</p>
+    </div>
+  </footer>
+
+  <script src="../../javascript/site.js" defer></script>
+  <script src="../../javascript/pages/cektarif.js" defer></script>
 </body>
 </html>

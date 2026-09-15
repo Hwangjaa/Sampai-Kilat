@@ -1,13 +1,31 @@
 <?php
 declare(strict_types=1);
+
 require_once __DIR__ . '/bootstrap.php';
 require_once __DIR__ . '/koneksiDB2.php';
+
 require_login();
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); exit('Metode tidak diizinkan.'); }
+
+$stepUrl = '../../src/createDelivery/Create3.php';
+
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    $_SESSION['flash_error'] = 'Pengiriman hanya bisa disimpan dari formulir konfirmasi di halaman Buat pengiriman langkah 3.';
+    header('Location: ' . $stepUrl, true, 303);
+    exit;
+}
+
 require_csrf();
+
 $sender = $_SESSION['shipment_sender'] ?? null;
 $receiver = $_SESSION['shipment_receiver'] ?? null;
-if (!is_array($sender) || !is_array($receiver)) { header('Location: ../../src/createDelivery/Create1.php', true, 303); exit; }
+if (!is_array($sender) || !is_array($receiver)) {
+    $_SESSION['flash_error'] = 'Data pengirim dan penerima belum lengkap, mulai lagi dari langkah 1.';
+    header('Location: ../../src/createDelivery/Create1.php', true, 303);
+    exit;
+}
+
+$usi = 'Pengiriman gagal disimpan. Coba lagi beberapa saat lagi.';
+$resi = '';
 
 try {
     $conn2->begin_transaction();
@@ -37,9 +55,20 @@ try {
 } catch (Throwable $error) {
     $conn2->rollback();
     error_log('Create delivery failed: ' . $error->getMessage());
-    http_response_code(503);
-    exit('Pengiriman gagal disimpan.');
+    $reason = $error->getMessage();
+    $userMessage = match ($reason) {
+        'ID pengirim tidak terdaftar.' => 'ID pengirim tidak terdaftar pada data pelanggan. Perbaiki data pengirim lewat tautan Ubah pada bagian Pengirim, atau daftarkan pelanggan baru lebih dulu.',
+        'ID servis tidak terdaftar.' => 'Layanan yang dipilih tidak terdaftar pada data servis. Perbaiki data penerima lewat tautan Ubah pada bagian Penerima dan layanan.',
+        'Referensi transit tidak tersedia.' => 'Data isi paket, kurir, atau posisi awal belum tersedia di database, sehingga pengiriman belum bisa dibuat.',
+        'Nomor resi habis.' => 'Nomor resi sudah mencapai batas maksimum. Hubungi administrator sistem.',
+        'Resi gagal disimpan.', 'Transit awal gagal disimpan.' => 'Pengiriman gagal disimpan karena masalah database. Data Anda belum hilang, coba simpan lagi.',
+        default => 'Pengiriman gagal disimpan. Coba lagi beberapa saat lagi.',
+    };
+    $_SESSION['flash_error'] = $userMessage;
+    header('Location: ' . $stepUrl, true, 303);
+    exit;
 }
+
 unset($_SESSION['shipment_sender'], $_SESSION['shipment_receiver']);
 $_SESSION['flash'] = 'Pengiriman ' . $resi . ' berhasil dibuat.';
 header('Location: ../../src/homepageAS/HomePageAdminStaff.php', true, 303);

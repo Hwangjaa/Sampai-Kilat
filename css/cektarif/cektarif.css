@@ -1,1 +1,78 @@
-:root{--ink:#172033;--muted:#526075;--surface:#fff;--line:#b8c1ce;--brand:#0756a4;--brand-dark:#003d78;--bg:#f3f6fa;--focus:#e25d00}*{box-sizing:border-box}body{margin:0;min-width:0;background:var(--bg);color:var(--ink);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}.skip-link{position:absolute;left:1rem;top:-4rem;background:#fff;color:var(--ink);padding:.6rem 1rem;z-index:2}.skip-link:focus{top:1rem}.site-header,footer{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem max(5vw,1rem);background:#fff}.site-header{border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:.45rem;font-size:1.2rem;font-weight:800;color:var(--ink);text-decoration:none}.brand img{width:2rem;height:2rem;object-fit:contain}.site-header nav,footer nav{display:flex;flex-wrap:wrap;gap:.75rem 1.25rem}a{color:var(--brand);font-weight:650}a:hover{color:var(--brand-dark)}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--focus);outline-offset:3px}.page-shell{width:min(100% - 2rem,960px);margin:2rem auto 3rem}h1{font-size:clamp(2rem,5vw,2.8rem);margin:0 0 1rem;text-align:center}.service-nav{display:flex;justify-content:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}.service-nav a{padding:.45rem .9rem;border:1px solid var(--brand);border-radius:99px;text-decoration:none}.service-nav [aria-current="page"]{background:var(--brand);color:#fff}.card{background:var(--surface);border:1px solid var(--line);border-radius:.75rem;padding:clamp(1rem,4vw,2rem);box-shadow:0 .25rem .8rem #17203314}.card h2{margin-top:0}.intro,.note{color:var(--muted)}form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.field{min-width:0}.wide{grid-column:span 2}label{display:block;font-weight:700;margin-bottom:.35rem}input{width:100%;min-width:0;padding:.65rem .75rem;border:1px solid #69778a;border-radius:.35rem;background:#fff;color:var(--ink);font:inherit}input[aria-invalid="true"]{border:2px solid #b42318}.error{min-height:1.35em;margin:.2rem 0 0;color:#b42318;font-size:.9rem}button{grid-column:span 2;justify-self:start;border:0;border-radius:.35rem;padding:.7rem 1.1rem;background:var(--brand);color:#fff;font:inherit;font-weight:750;cursor:pointer}button:hover{background:var(--brand-dark)}.status{min-height:1.5rem;margin-top:1rem;font-weight:650}.result{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--line)}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse}th,td{padding:.7rem;text-align:left;border-bottom:1px solid var(--line)}footer{margin-top:auto;border-top:1px solid var(--line);color:var(--muted)}footer p{margin:.25rem 0}@media(max-width:600px){.site-header,footer{align-items:flex-start;flex-direction:column}.page-shell{margin-top:1rem}form{grid-template-columns:1fr}.wide,button{grid-column:span 1}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+.tarif-aside {
+  display: grid;
+  gap: var(--sp-4);
+  align-content: start;
+}
+
+.tarif-note {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  color: var(--ink-soft);
+  border-top: 1px solid var(--line);
+  font-size: var(--fs-sm);
+}
+
+.tarif-result__weight {
+  padding: var(--sp-3) var(--sp-4);
+  color: var(--navy-900);
+  background: var(--blue-050);
+  border-left: 4px solid var(--blue-600);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-sm);
+}
+
+.tarif-result__weight strong {
+  font-family: var(--font-display);
+}
+
+.tarif-result .table-wrap {
+  margin-top: var(--sp-4);
+}
+
+.tarif-result .table tbody th {
+  color: var(--navy-900);
+  font-family: var(--font-display);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.tarif-result .table td:last-child {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.tarif-result__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-3);
+  margin-top: var(--sp-4);
+}
+
+.tarif-result__actions .btn {
+  flex: 1 1 12rem;
+}
+
+.tarif-result__hint {
+  margin-top: var(--sp-3);
+  font-size: var(--fs-sm);
+}
+
+.tarif-result__status {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-3);
+  border-top: 1px dashed var(--line);
+  font-size: var(--fs-sm);
+}
+
+.tarif-result:focus-visible {
+  outline: var(--ring);
+  outline-offset: 3px;
+}
+
+@media (max-width: 860px) {
+  .tarif-empty,
+  .tarif-result {
+    grid-column: 1 / -1;
+  }
+}
