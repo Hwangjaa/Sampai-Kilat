@@ -1,8 +1,8 @@
 # Sampai Kilat — Sistem Informasi Pengiriman Paket
 
-**Sampai Kilat** adalah website jasa kurir pengiriman paket yang dibangun sebagai
-tugas mata kuliah **Secure Coding**. Project ini dikerjakan secara mandiri
-(Rafael Yudianto — 2602052153) dan berfokus pada dua hal:
+**Sampai Kilat** adalah website jasa kurir pengiriman paket yang dibangun
+sebagai tugas mata kuliah **Secure Coding**. Project ini dikerjakan secara
+berkelompok (lihat daftar anggota di bagian bawah) dan berfokus pada dua hal:
 
 1. **Fungsionalitas** — alur bisnis pengiriman paket yang utuh: lacak resi,
    input pengiriman, update status, dan dashboard staff.
@@ -266,3 +266,17 @@ Sampai Kilat/
 Project ini dibuat untuk keperluan akademik mata kuliah **Secure Coding**
 di BINUS University. Kode bebas dipakai sebagai referensi belajar.
 Nama brand "Sampai Kilat" fiktif, dipakai untuk keperluan tugas.
+
+---
+
+## Anggota Kelompok
+
+Yang berpartisipasi dalam project ini:
+
+| Nama | NIM |
+|------|-----|
+| Raymond Ivander | 2602059550 |
+| Muhamad Salman Hakim | 2602076443 |
+| Vutanto Hendy Wijaya | 2602063535 |
+| Rafael Satriaprima Yudianto | 2602052153 |
+| Darren Aditya | 2602076153 |
