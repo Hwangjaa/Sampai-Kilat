@@ -1,7 +1,7 @@
 # Sampai Kilat — Sistem Informasi Pengiriman Paket
 
 **Sampai Kilat** adalah website jasa kurir pengiriman paket yang dibangun
-sebagai tugas mata kuliah **Secure Coding**. Project ini dikerjakan secara
+sebagai tugas mata kuliah **Secure Programming**. Project ini dikerjakan secara
 berkelompok (lihat daftar anggota di bagian bawah) dan berfokus pada dua hal:
 
 1. **Fungsionalitas** — alur bisnis pengiriman paket yang utuh: lacak resi,
@@ -53,7 +53,7 @@ Skrip lengkap ada di `scriptDB/`, termasuk data seed untuk uji coba.
 
 ---
 
-## Secure Coding: Apa Saja yang Diterapkan
+## Secure Programming: Apa Saja yang Diterapkan
 
 Semua temuan dari security audit internal sudah ditangani. Ringkasan
 praktik keamanan yang menarik di project ini:
@@ -263,7 +263,7 @@ Sampai Kilat/
 
 ## Lisensi & Konteks
 
-Project ini dibuat untuk keperluan akademik mata kuliah **Secure Coding**
+Project ini dibuat untuk keperluan akademik mata kuliah **Secure Programming**
 di BINUS University. Kode bebas dipakai sebagai referensi belajar.
 Nama brand "Sampai Kilat" fiktif, dipakai untuk keperluan tugas.
 
