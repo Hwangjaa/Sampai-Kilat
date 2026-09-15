@@ -5,15 +5,26 @@ require_once __DIR__ . '/koneksiDB2.php';
 require_login();
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); exit('Metode tidak diizinkan.'); }
 require_csrf();
-
 $resi = trim((string) ($_POST['nomor_resi'] ?? ''));
-$status = trim((string) ($_POST['status'] ?? ''));
-$allowed = ['WH Jakarta' => 'PS-002', 'WH Depok' => 'PS-003', 'WH Bogor' => 'PS-005', 'SAMPAI' => 'PS-006', 'WH Tangerang' => 'PS-001', 'WH Bekasi' => 'PS-004'];
-if (!preg_match('/^RS-[0-9]{7}$/', $resi) || !isset($allowed[$status])) exit('Resi atau status tidak valid.');
-
-$stmt = $conn2->prepare('UPDATE transit SET id_posisi_terakhir_paket = ?, tanggal_jam_pengiriman = CURRENT_TIMESTAMP WHERE nomor_resi = ?');
-$position = $allowed[$status];
-$stmt->bind_param('ss', $position, $resi);
-if (!$stmt->execute() || $stmt->affected_rows < 1) { http_response_code(404); exit('Resi belum memiliki data transit.'); }
-header('Location: ../../src/homepageAS/HomePageAdminStaff.php?updated=1', true, 303);
+$position = trim((string) ($_POST['status'] ?? ''));
+$allowed = ['PS-001', 'PS-002', 'PS-003', 'PS-004', 'PS-005', 'PS-006'];
+if (!preg_match('/^RS-[0-9]{7}$/', $resi) || !in_array($position, $allowed, true)) { http_response_code(422); exit('Resi atau lokasi tidak valid.'); }
+try {
+    $conn2->begin_transaction();
+    $exists = $conn2->prepare('SELECT nomor_resi FROM transit WHERE nomor_resi = ? LIMIT 1 FOR UPDATE');
+    $exists->bind_param('s', $resi);
+    $exists->execute();
+    if (!$exists->get_result()->fetch_assoc()) { throw new RuntimeException('Resi belum memiliki data transit.'); }
+    $stmt = $conn2->prepare('UPDATE transit SET id_posisi_terakhir_paket = ?, tanggal_jam_pengiriman = CURRENT_TIMESTAMP WHERE nomor_resi = ?');
+    $stmt->bind_param('ss', $position, $resi);
+    if (!$stmt->execute()) { throw new RuntimeException('Update transit gagal.'); }
+    $conn2->commit();
+} catch (Throwable $error) {
+    $conn2->rollback();
+    error_log('Update delivery failed: ' . $error->getMessage());
+    http_response_code(503);
+    exit('Pengiriman gagal diperbarui.');
+}
+$_SESSION['flash'] = 'Status pengiriman ' . $resi . ' berhasil diperbarui.';
+header('Location: ../../src/homepageAS/HomePageAdminStaff.php', true, 303);
 exit;

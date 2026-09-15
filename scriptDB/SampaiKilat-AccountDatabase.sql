@@ -26,7 +26,7 @@ create table akun_staff
 (
     id_staff char(8) not null,
     username_staff varchar(30) not null,
-    password_staff char(32) not null,
+    password_staff varchar(255) not null,
     id_role char(6) not null,
     foreign key (id_staff) references staff (id_staff) on update cascade on delete cascade,
     foreign key (id_role) references role_akun (id_role) on update cascade on delete cascade
@@ -48,11 +48,11 @@ VALUES
 
 INSERT INTO akun_staff (id_staff, username_staff, password_staff, id_role)
 VALUES 
-('SF-00001', 'andi.pratama', MD5(MD5(concat(MD5('password123'), 'SampaiKilat'))), 'RL-001'),
-('SF-00002', 'budi.santoso', MD5(MD5(concat(MD5('securepass'), 'SampaiKilat'))), 'RL-002'),
-('SF-00003', 'citra.dewi', MD5(MD5(concat(MD5('mypassword'), 'SampaiKilat'))), 'RL-002'),
-('SF-00004', 'dedi.suhendra', MD5(MD5(concat(MD5('password321'), 'SampaiKilat'))), 'RL-002'),
-('SF-00005', 'eka.kurniawan', MD5(MD5(concat(MD5('tebetrocks'), 'SampaiKilat'))), 'RL-002');
+('SF-00001', 'andi.pratama', '$2y$12$bqppxdjS7tj.d/DF5tnozuvc8a/t7AMgtUJGzclyyo6vv7zMVzza6', 'RL-001'),
+('SF-00002', 'budi.santoso', '$2y$12$VyjXkT0LBWYRl08yAjv1BeA1AR3g9TA8EFJ9Hp8L.qImwoFprLLpi', 'RL-002'),
+('SF-00003', 'citra.dewi', '$2y$12$Ac6Mz1UZH8M5Qk6.cFEcqOWhww58dq7iLd1SQqjYg3qxpVsnqtBni', 'RL-002'),
+('SF-00004', 'dedi.suhendra', '$2y$12$GFeDToG6qgM/Deu7XrxPV.Z/oNQmgmNpXNlj9fMIAfb6M1b7F/Ktu', 'RL-002'),
+('SF-00005', 'eka.kurniawan', '$2y$12$/1yB65ejXfQ4Kihm0m81GeMBiZZuy/ZbE9TBD3SxkNvMXjKZ5YoXO', 'RL-002');
 
 
 

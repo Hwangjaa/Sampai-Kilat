@@ -1,7 +1,7 @@
 # Sampai Kilat — Package Delivery Information System
 
-**Sampai Kilat** is a courier delivery website built as a group assignment
-for the **Secure Programming** course at BINUS University. The project
+**Sampai Kilat** is a courier delivery website built independently for the
+**Secure Programming** course at BINUS University. The project
 focuses on two things:
 
 1. **Functionality** — a complete delivery business flow: package tracking,
@@ -80,7 +80,7 @@ dashboard.
 
 ### 3. Cross-Site Request Forgery (CSRF)
 
-Sensitive forms (login, create, update, delete, customer registration)
+Authenticated state-changing forms (create, update, delete, customer registration, and logout)
 use the **synchronizer token pattern**:
 
 - A random 32-byte token (`random_bytes(32)`) is stored in the session.
@@ -277,14 +277,7 @@ Kilat" brand is fictional, used for the assignment.
 
 ---
 
-## Group Members
+## Author
 
-Who participated in this project:
-
-| Name | Student ID |
-|------|------------|
-| Raymond Ivander | 2602059550 |
-| Muhamad Salman Hakim | 2602076443 |
-| Vutanto Hendy Wijaya | 2602063535 |
-| Rafael Satriaprima Yudianto | 2602052153 |
-| Darren Aditya | 2602076153 |
+Rafael Yudianto
+Student ID: 2602052153

@@ -2,25 +2,6 @@
 declare(strict_types=1);
 require_once '../../controller/login/bootstrap.php';
 require_login();
-?><!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Update Pengiriman</title><link rel="stylesheet" href="../../css/updatingDelivery/Update3.css">
-</head>
-<body>
-  <main class="content"><div class="form-container">
-    <h2>UPDATE PENGIRIMAN</h2>
-    <form action="../../controller/login/updateDelivery.php" method="post">
-      <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
-      <label for="nomor_resi">Nomor Resi</label>
-      <input type="text" id="nomor_resi" name="nomor_resi" pattern="RS-[0-9]{7}" maxlength="10" required>
-      <label for="status">Status Pengiriman</label>
-      <select id="status" name="status" required>
-        <option value="">Pilih status</option><option>WH Jakarta</option><option>WH Depok</option><option>WH Bogor</option><option>SAMPAI</option><option>WH Tangerang</option><option>WH Bekasi</option>
-      </select>
-      <div class="form-buttons"><button type="submit" class="update-button">Update</button><a class="cancel-button" href="../homepageAS/HomePageAdminStaff.php">Cancel</a></div>
-    </form>
-  </div></main>
-</body>
-</html>
+?><!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Update Pengiriman</title><link rel="stylesheet" href="../../css/updatingDelivery/Update3.css"></head>
+<body><main class="page"><header><a href="../homepageAS/HomePageAdminStaff.php">Dashboard</a><form class="logout-form" method="post" action="../../controller/login/logout.php"><input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>"><button type="submit">Keluar</button></form></header><section class="card"><h1>Update Pengiriman</h1><p>Perbarui lokasi transit terakhir.</p><form action="../../controller/login/updateDelivery.php" method="post"><input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>"><label for="nomor_resi">Nomor resi</label><input id="nomor_resi" name="nomor_resi" pattern="RS-[0-9]{7}" maxlength="10" required><label for="status">Lokasi terakhir</label><select id="status" name="status" required><option value="">Pilih lokasi</option><option value="PS-001">WH Tangerang</option><option value="PS-002">WH Jakarta</option><option value="PS-003">WH Depok</option><option value="PS-004">WH Bekasi</option><option value="PS-005">WH Bogor</option><option value="PS-006">SAMPAI</option></select><div class="actions"><a class="button secondary" href="../homepageAS/HomePageAdminStaff.php">Batal</a><button type="submit">Simpan update</button></div></form></section></main></body></html>

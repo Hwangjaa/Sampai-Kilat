@@ -1,242 +1,58 @@
-<!DOCTYPE html>
-<html lang="en">
-
+<!doctype html>
+<html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rules Page</title>
-    <link rel="stylesheet" href="../../css/cektarif/cektarif.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cek Tarif Pengiriman | SampaiKilat</title>
+  <link rel="stylesheet" href="../../css/cektarif/cektarif.css">
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
-                alt="Logo">
-            <span>SampaiKilat</span>
-        </div>
-        <nav>
-            <a href="../../homepage.html">Home</a>
-            <a href="../cekresi/cekresi.php">Cek Resi</a>
-            <a href="../aboutus/AboutUs.html">About Us</a>
-            <a href="../help/Help.html">Help</a>
-        </nav>
-    </header>
-
-    <!-- Cek Tarif Section -->
-    <div class="container">
-        <h1>Cek Resi</h1>
-        <div class="nav-buttons">
-            <button onclick="window.location.href='../cekresi/cekresi.php';"><b>Cek Resi</b></button>
-            <button class="btn-gray"><b>Cek Tarif</b></button>
-            <button onclick="window.location.href='../ceklokasi/CekLokasi.html';"><b>Cek Lokasi</b></button>
-        </div>
-        <form class="form-tarif">
-            <div class="input-group">
-                <label for="weight">Pengirim</label>
-                <div class="input-wrapper">
-                    <input type="text" id="sender" placeholder="Alamat Pengirim">
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="destination">Tujuan</label>
-                <div class="input-wrapper">
-                    <input type="text" id="destination" placeholder="Alamat Penerima">
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="weight">Berat</label>
-                <div class="input-wrapper">
-                    <input type="text" id="weight" placeholder="Berat Barang">
-                    <span class="unit">Kg</span>
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="length">Panjang</label>
-                <div class="input-wrapper">
-                    <input type="text" id="length" placeholder="Panjang">
-                    <span class="unit">Cm</span>
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="width">Lebar</label>
-                <div class="input-wrapper">
-                    <input type="text" id="width" placeholder="Lebar">
-                    <span class="unit">Cm</span>
-                </div>
-            </div>
-            <div class="input-group">
-                <label for="height">Tinggi</label>
-                <div class="input-wrapper">
-                    <input type="text" id="height" placeholder="Tinggi">
-                    <span class="unit">Cm</span>
-                </div>
-            </div>
-            <button class="button-check">Cek Tarif</button>
-        </form>
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <div class="footer-logo-container">
-                    <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
-                        alt="Logo" class="footer-logo">
-                    <p><b>SampaiKilat</b></p>
-                </div>
-                <p><b>CUSTOMER SERVICE</b></p>
-                <p><img src="../../assets/homepage/image/684846.png" alt=""> (021) 222 2222</p>
-                <p><img src="../../assets/homepage/image/png-transparent-computer-icons-envelope-mail-envelope-miscellaneous-angle-triangle-removebg-preview (1).png"
-                        alt=""> sampai@kilat.co.id</p>
-                <div class="social-media">
-                    <img src="../../assets/homepage/image/Twitter-new-cross-mark-Icon-PNG-X-removebg-preview.png"
-                        alt="Facebook">
-                    <img src="../../assets/homepage/image/59439.png" alt="Instagram">
-                    <img src="../../assets/homepage/image/images-removebg-preview.png" alt="Twitter">
-                    <img src="../../assets/homepage/image/png-transparent-instagram-vector-brand-logos-icon-removebg-preview.png"
-                        alt="Instagram">
-                </div>
-            </div>
-            <div class="footer-section">
-                <p><b>PERUSAHAAN</b></p>
-                <a href="../aboutus/AboutUs.html">Profil Perusahaan</a><br>
-                <a href="../help/Help.html">Bantuan</a>
-            </div>
-            <div class="footer-section">
-                <p><b>LAYANAN</b></p>
-                <a href="../cekresi/cekresi.php">Lacak Pengiriman</a><br>
-                <a href="../cektarif/cektarif.html">Cek Tarif</a><br>
-                <a href="../ceklokasi/CekLokasi.html">Lokasi</a>
-            </div>
-            <div class="footer-section">
-                <p><b>Peraturan</b></p>
-                <a href="../rules/RulesPage.html">Larangan Pengiriman</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Popup for Tarif Information -->
-    <div id="tarifPopup" class="popup">
-        <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">&#x2190;</button>
-            <table>
-                <tr>
-                    <th>Layanan</th>
-                    <th>Deskripsi</th>
-                    <th>Tarif</th>
-                    <th>Estimasi</th>
-                </tr>
-                <tr>
-                    <td><img src="../../assets/cektarif/sds.png" alt="SDY Logo"></td>
-                    <td>Sameday Service</td>
-                    <td class="sameday-tarif"></td>
-                    <td>Hari yang sama</td>
-                </tr>
-                <tr>
-                    <td><img src="../../assets/cektarif/ons.png" alt="OVN Logo"></td>
-                    <td>Overnight Service</td>
-                    <td class="overnight-tarif"></td>
-                    <td>1 hari sampai</td>
-                </tr>
-                <tr>
-                    <td><img src="../../assets/cektarif/reg.png" alt="REG Logo"></td>
-                    <td>Regular Service</td>
-                    <td class="regular-tarif"></td>
-                    <td>2 hari sampai</td>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <script>
-        // Function to sanitize input to prevent XSS
-        function sanitizeInput(input) {
-            const div = document.createElement('div');
-            div.textContent = input;
-            return div.innerHTML;
-        }
-
-        // Function to validate if input is an integer
-        function isValidInteger(input) {
-            const sanitizedInput = sanitizeInput(input);
-            const intRegex = /^[0-9]+$/; // Only allows integers (positive numbers)
-            return intRegex.test(sanitizedInput);
-        }
-
-        // Function to calculate tariff
-        function calculateTarif(weight, length, width, height) {
-            const baseRate = 5000;
-            const weightRate = weight * 2000;
-            const volumeRate = (length * width * height) / 5000;
-            return Math.max(baseRate + weightRate, volumeRate);
-        }
-
-        // Function to open the popup
-        function openPopup() {
-            document.getElementById("tarifPopup").style.display = "flex";
-        }
-
-        // Function to close the popup
-        function closePopup() {
-            document.getElementById("tarifPopup").style.display = "none";
-        }
-
-        // Attach the function to the "Cek Tarif" button
-        document.querySelector(".button-check").addEventListener("click", function (event) {
-            event.preventDefault();
-
-            // Get user inputs
-            const weightInput = document.getElementById("weight").value;
-            const lengthInput = document.getElementById("length").value;
-            const widthInput = document.getElementById("width").value;
-            const heightInput = document.getElementById("height").value;
-            const senderAddress = document.getElementById("sender").value.trim();
-            const receiverAddress = document.getElementById("destination").value.trim();
-
-            // Validate addresses
-            if (!senderAddress) {
-                alert("Alamat pengiriman tidak boleh kosong!");
-                return;
-            }
-
-            if (!receiverAddress) {
-                alert("Alamat tujuan tidak boleh kosong!");
-                return;
-            }
-
-            // Sanitize and validate numerical inputs
-            if (
-                !isValidInteger(weightInput) ||
-                !isValidInteger(lengthInput) ||
-                !isValidInteger(widthInput) ||
-                !isValidInteger(heightInput)
-            ) {
-                alert("Masukkan hanya angka positif untuk berat, panjang, lebar, dan tinggi!");
-                return;
-            }
-
-            // Parse inputs to numbers
-            const weight = parseInt(weightInput, 10);
-            const length = parseInt(lengthInput, 10);
-            const width = parseInt(widthInput, 10);
-            const height = parseInt(heightInput, 10);
-
-            // Calculate base tariff
-            const baseTarif = calculateTarif(weight, length, width, height);
-
-            // Update tariffs for all services
-            document.querySelector(".regular-tarif").textContent = `Rp ${baseTarif.toLocaleString('id-ID')}`;
-            document.querySelector(".overnight-tarif").textContent = `Rp ${(baseTarif * 1.5).toLocaleString('id-ID')}`;
-            document.querySelector(".sameday-tarif").textContent = `Rp ${(baseTarif * 2).toLocaleString('id-ID')}`;
-
-            // Show popup
-            openPopup();
-        });
-    </script>
-
-
+  <a class="skip-link" href="#utama">Lewati ke isi</a>
+  <header class="site-header">
+    <a class="brand" href="../../homepage.html"><img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png" alt=""><span>SampaiKilat</span></a>
+    <nav aria-label="Navigasi utama"><a href="../../homepage.html">Beranda</a><a href="../cekresi/cekresi.php">Cek Resi</a><a href="../aboutus/AboutUs.html">Tentang Kami</a><a href="../help/Help.html">Bantuan</a></nav>
+  </header>
+  <main id="utama" class="page-shell">
+    <h1>Cek Tarif</h1>
+    <nav class="service-nav" aria-label="Layanan pengiriman"><a href="../cekresi/cekresi.php">Cek Resi</a><a aria-current="page" href="cektarif.html">Cek Tarif</a><a href="../ceklokasi/CekLokasi.html">Cek Lokasi</a></nav>
+    <section class="card" aria-labelledby="form-title">
+      <h2 id="form-title">Estimasi biaya kirim</h2>
+      <p class="intro">Isi alamat dan ukuran paket. Tarif ini estimasi untuk perbandingan layanan.</p>
+      <form id="tarif-form" novalidate>
+        <div class="field wide"><label for="sender">Alamat pengirim</label><input id="sender" name="sender" autocomplete="street-address" required aria-describedby="sender-error"><p class="error" id="sender-error"></p></div>
+        <div class="field wide"><label for="destination">Alamat tujuan</label><input id="destination" name="destination" autocomplete="street-address" required aria-describedby="destination-error"><p class="error" id="destination-error"></p></div>
+        <div class="field"><label for="weight">Berat (kg)</label><input id="weight" name="weight" inputmode="decimal" type="number" min="0.1" step="0.1" required aria-describedby="weight-error"><p class="error" id="weight-error"></p></div>
+        <div class="field"><label for="length">Panjang (cm)</label><input id="length" name="length" inputmode="decimal" type="number" min="1" step="0.1" required aria-describedby="length-error"><p class="error" id="length-error"></p></div>
+        <div class="field"><label for="width">Lebar (cm)</label><input id="width" name="width" inputmode="decimal" type="number" min="1" step="0.1" required aria-describedby="width-error"><p class="error" id="width-error"></p></div>
+        <div class="field"><label for="height">Tinggi (cm)</label><input id="height" name="height" inputmode="decimal" type="number" min="1" step="0.1" required aria-describedby="height-error"><p class="error" id="height-error"></p></div>
+        <button type="submit">Cek tarif</button>
+      </form>
+      <div id="form-status" class="status" role="status" aria-live="polite" tabindex="-1"></div>
+      <section id="tarif-result" class="result" hidden aria-labelledby="result-title">
+        <h2 id="result-title">Estimasi tarif</h2>
+        <p id="chargeable-weight"></p>
+        <div class="table-wrap"><table><thead><tr><th scope="col">Layanan</th><th scope="col">Estimasi tiba</th><th scope="col">Tarif</th></tr></thead><tbody id="tarif-rows"></tbody></table></div>
+        <p class="note">Tarif akhir dapat berubah setelah paket ditimbang dan alamat diverifikasi.</p>
+      </section>
+    </section>
+  </main>
+  <footer><div><strong>SampaiKilat</strong><p>Butuh bantuan? <a href="tel:+62212222222">(021) 222 2222</a> · <a href="mailto:sampai@kilat.co.id">sampai@kilat.co.id</a></p></div><nav aria-label="Navigasi footer"><a href="../aboutus/AboutUs.html">Tentang Kami</a><a href="../help/Help.html">Bantuan</a><a href="../rules/RulesPage.html">Larangan Pengiriman</a></nav></footer>
+  <script>
+    const form = document.querySelector('#tarif-form');
+    const result = document.querySelector('#tarif-result');
+    const status = document.querySelector('#form-status');
+    const fields = ['sender', 'destination', 'weight', 'length', 'width', 'height'];
+    const rupiah = new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 });
+    function error(id, message) { const input = document.querySelector('#' + id); input.setAttribute('aria-invalid', Boolean(message)); document.querySelector('#' + id + '-error').textContent = message; }
+    form.addEventListener('submit', (event) => {
+      event.preventDefault(); let first; let valid = true;
+      fields.forEach((id) => { const input = document.querySelector('#' + id); const numeric = ['weight', 'length', 'width', 'height'].includes(id); const message = !input.value.trim() ? 'Wajib diisi.' : numeric && (!(Number(input.value) > 0)) ? 'Masukkan angka lebih dari 0.' : ''; error(id, message); if (message) { valid = false; first ||= input; } });
+      if (!valid) { result.hidden = true; status.textContent = 'Periksa kolom yang ditandai.'; first.focus(); return; }
+      const packageWeight = Number(document.querySelector('#weight').value); const volumeWeight = (Number(document.querySelector('#length').value) * Number(document.querySelector('#width').value) * Number(document.querySelector('#height').value)) / 5000; const billable = Math.max(packageWeight, volumeWeight); const regular = Math.ceil(5000 + billable * 2000);
+      document.querySelector('#chargeable-weight').textContent = 'Berat tagihan: ' + billable.toLocaleString('id-ID', { maximumFractionDigits: 2 }) + ' kg.';
+      document.querySelector('#tarif-rows').innerHTML = [['Same Day', 'Hari yang sama', regular * 2], ['Overnight', '1 hari', Math.ceil(regular * 1.5)], ['Regular', '2 hari', regular]].map(([service, eta, price]) => '<tr><th scope="row">' + service + '</th><td>' + eta + '</td><td>' + rupiah.format(price) + '</td></tr>').join('');
+      result.hidden = false; status.textContent = 'Estimasi tarif tersedia.'; result.scrollIntoView({ block: 'nearest', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    });
+  </script>
 </body>
-
 </html>

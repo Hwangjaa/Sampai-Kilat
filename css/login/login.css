@@ -9,6 +9,12 @@
   overflow: hidden;
 }
 
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 24px;
+}
+
 video {
   position: absolute;
   top: 50%;
@@ -24,15 +30,13 @@ video {
 
 /* Mengatur form login agar berada di tengah layar */
 .login-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  margin: min(25vh, 160px) auto;
   background-color: rgba(255, 255, 255, 0.05); /* Transparansi background */
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  width: min(100%, 300px);
   text-align: center;
   backdrop-filter: blur(5px); /* Efek blur ringan di belakang container */
 }
@@ -81,5 +85,11 @@ button {
 
 button:hover {
   background-color: #4CAF50;
-  color: whi;
+  color: white;
+}
+
+input:focus-visible,
+button:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 3px;
 }

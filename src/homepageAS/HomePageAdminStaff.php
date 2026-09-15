@@ -1,135 +1,15 @@
 <?php
+declare(strict_types=1);
 require_once '../../controller/login/bootstrap.php';
-require_once '../../controller/login/koneksiDB2.php'; // Koneksi database
+require_once '../../controller/login/koneksiDB2.php';
 require_login();
-
-// Ambil role dari session
-$role_id = $_SESSION['role'] ?? null; // Gunakan null jika session role tidak ada
-
-// Validasi apakah pengguna sudah login
-if (!isset($_SESSION['username']) || !isset($_SESSION['session_id']) || $_SESSION['session_id'] !== session_id()) {
-    die("Akses ditolak: Anda belum login.");
-}
-
-// Query untuk mengambil data dari database
-$sql = "
-    SELECT 
-        transit.nomor_resi,
-        isi_paket.desk_isi_paket AS nama_barang,
-        supir.nama_supir AS kurir,
-        transit.tanggal_jam_pengiriman AS waktu_pengiriman,
-        posisi_paket.posisi_terakhir AS lokasi_terakhir
-    FROM resi
-    LEFT JOIN transit ON resi.nomor_resi = transit.nomor_resi
-    LEFT JOIN isi_paket ON transit.id_isi_paket = isi_paket.id_isi_paket
-    LEFT JOIN supir ON transit.plat_nomor_kendaraan = supir.plat_nomor_kendaraan
-    LEFT JOIN posisi_paket ON transit.id_posisi_terakhir_paket = posisi_paket.id_posisi_terakhir_paket
-    ORDER BY 
-        transit.tanggal_jam_pengiriman DESC
-";
-
+$roleId = (string) $_SESSION['role'];
+$flash = $_SESSION['flash'] ?? '';
+unset($_SESSION['flash']);
+$rows = [];
+$sql = 'SELECT t.nomor_resi, i.desk_isi_paket AS nama_barang, s.nama_supir AS kurir, t.tanggal_jam_pengiriman, p.posisi_terakhir FROM transit t JOIN isi_paket i ON i.id_isi_paket = t.id_isi_paket JOIN supir s ON s.plat_nomor_kendaraan = t.plat_nomor_kendaraan JOIN posisi_paket p ON p.id_posisi_terakhir_paket = t.id_posisi_terakhir_paket ORDER BY t.tanggal_jam_pengiriman DESC, t.nomor_resi DESC';
 $result = $conn2->query($sql);
-
-$data = [];
-if ($result->num_rows > 0) {
-    $count = 1;
-    while ($row = $result->fetch_assoc()) {
-        $data[] = [
-            'Count' => $count,
-            'No_Resi' => $row['nomor_resi'],
-            'Nama_Barang' => $row['nama_barang'],
-            'Kurir' => $row['kurir'],
-            'Waktu_Pengiriman' => $row['waktu_pengiriman'],
-            'Lokasi_Terakhir' => $row['lokasi_terakhir'],
-        ];
-        $count++;
-    }
-}
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard Pengiriman</title>
-  <link rel="stylesheet" href="../../css/homepageAS/HomePageAdminStaff.css">
-</head>
-<body>
-  <div class="sidebar">
-    <div class="profile">
-      <div class="profile-picture"><img src="../../assets/homepagestaff/image/UserIcon.png" alt=""></div>
-      <p class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></p>
-    </div>
-    <ul class="menu">
-      <li><a href="#dashboard">Dashboard</a></li>
-      <li><a href="../mendaftarPelanggan/pelanggan.php">Mendaftarkan Pelanggan</a></li>
-    </ul>
-    <a class="logout-button" href="../../controller/login/logout.php">
-      <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="">
-      <span>LogOut</span>
-    </a>
-  </div>
-  <div class="content">
-  <table>
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>No Resi</th>
-      <th>Nama Barang</th>
-      <th>Kurir</th>
-      <th>Tanggal & Jam Pengiriman</th>
-      <th>Lokasi Terakhir</th>
-    </tr>
-  </thead>
-  <tbody>
-    <?php foreach ($data as $datas): ?>
-    <tr>
-      <td><?php echo $datas['Count']; ?></td>
-      <td><?= e($datas['No_Resi']) ?></td>
-      <td><?= e($datas['Nama_Barang']) ?></td>
-      <td><?= e($datas['Kurir']) ?></td>
-      <td><?= e($datas['Waktu_Pengiriman']) ?></td>
-      <td><?= e($datas['Lokasi_Terakhir']) ?></td>
-    </tr>
-    <?php endforeach; ?>
-  </tbody>
-</table>
-
-    <div class="buttons">
-      <button class="create" onclick="window.location.href='../createDelivery/Create1.php'">Create</button>
-      <button class="update" onclick="window.location.href='../updatingDelivery/Update3.php'">Update</button>
-      <?php if ($role_id === 'RL-001'): // Tampilkan tombol Delete hanya untuk Admin ?>
-        <button class="delete" onclick="showDeletePopup()">Delete</button>
-      <?php endif; ?>
-    </div>
-  </div>
-
-  <?php if ($role_id === 'RL-001'): // Tampilkan popup hanya untuk Admin ?>
-  <div class="popup-container" id="deletePopup">
-    <div class="popup-content">
-      <form method="POST" action="../../controller/login/deleteData.php">
-        <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
-        <p>Masukkan Nomor Resi yang ingin dihapus:</p>
-        <input type="text" name="nomor_resi" placeholder="Masukkan Nomor Resi" required>
-        <div class="popup-buttons">
-          <button type="submit" class="popup-delete">Delete</button>
-          <button type="button" class="popup-cancel" onclick="closePopup()">Cancel</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  <?php endif; ?>
-
-  <script>
-    function showDeletePopup() {
-      document.getElementById("deletePopup").style.visibility = "visible";
-      document.getElementById("deletePopup").style.opacity = "1";
-    }
-
-    function closePopup() {
-      document.getElementById("deletePopup").style.visibility = "hidden";
-      document.getElementById("deletePopup").style.opacity = "0";
-    }
-  </script>
-</body>
-</html>
+if ($result) { while ($row = $result->fetch_assoc()) { $rows[] = $row; } } else { error_log('Dashboard query failed'); }
+?><!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Dashboard Pengiriman</title><link rel="stylesheet" href="../../css/homepageAS/HomePageAdminStaff.css"></head>
+<body><header class="topbar"><strong>Sampai Kilat</strong><span><?= e($_SESSION['username']) ?></span><form class="logout-form" method="post" action="../../controller/login/logout.php"><input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>"><button type="submit">Keluar</button></form></header><main><div class="title"><div><h1>Dashboard Pengiriman</h1><p>Daftar transit pengiriman terbaru.</p></div><div class="actions"><a class="button" href="../createDelivery/Create1.php">Buat pengiriman</a><a class="button secondary" href="../updatingDelivery/Update3.php">Update lokasi</a><?php if ($roleId === 'RL-001'): ?><button class="danger" type="button" onclick="document.getElementById('delete-dialog').showModal()">Hapus transit</button><?php endif; ?></div></div><?php if ($flash !== ''): ?><p class="flash" role="status"><?= e($flash) ?></p><?php endif; ?><div class="table-wrap"><table><thead><tr><th>No.</th><th>Resi</th><th>Isi paket</th><th>Kurir</th><th>Waktu</th><th>Lokasi terakhir</th></tr></thead><tbody><?php foreach ($rows as $index => $row): ?><tr><td><?= $index + 1 ?></td><td><?= e($row['nomor_resi']) ?></td><td><?= e($row['nama_barang']) ?></td><td><?= e($row['kurir']) ?></td><td><?= e($row['tanggal_jam_pengiriman']) ?></td><td><?= e($row['posisi_terakhir']) ?></td></tr><?php endforeach; ?><?php if (!$rows): ?><tr><td colspan="6">Belum ada data transit.</td></tr><?php endif; ?></tbody></table></div></main><?php if ($roleId === 'RL-001'): ?><dialog id="delete-dialog"><form method="post" action="../../controller/login/deleteData.php"><h2>Hapus data transit</h2><p>Tindakan ini menghapus semua transit untuk resi terpilih.</p><input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>"><label for="delete-resi">Nomor resi</label><input id="delete-resi" name="nomor_resi" pattern="RS-[0-9]{7}" maxlength="10" required><div class="actions"><button class="secondary" formmethod="dialog">Batal</button><button class="danger" type="submit">Hapus</button></div></form></dialog><?php endif; ?></body></html>

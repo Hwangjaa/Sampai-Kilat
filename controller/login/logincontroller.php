@@ -19,8 +19,7 @@ $stmt = $conn->prepare('SELECT username_staff, password_staff, id_role FROM akun
 $stmt->bind_param('s', $username);
 $stmt->execute();
 $row = $stmt->get_result()->fetch_assoc();
-$legacyHash = md5(md5(md5($password) . 'SampaiKilat'));
-$valid = $row && hash_equals((string) $row['password_staff'], $legacyHash);
+$valid = $row && password_verify($password, (string) $row['password_staff']);
 if (!$valid) {
     usleep(250000);
     header('Location: ../../src/login/loginpage.html?error=1', true, 303);

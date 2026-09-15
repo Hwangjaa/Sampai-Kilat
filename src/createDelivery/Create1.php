@@ -1,70 +1,17 @@
 <?php
+declare(strict_types=1);
 require_once '../../controller/login/bootstrap.php';
 require_login();
-$username=$_SESSION['username'];
-
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create Pengiriman</title>
-  <link rel="stylesheet" href="../../css/createDelivery/Create1.css">
-</head>
+?><!doctype html>
+<html lang="id">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Buat Pengiriman — Pengirim</title><link rel="stylesheet" href="../../css/createDelivery/Create1.css"></head>
 <body>
-  <div class="sidebar">
-    <div class="profile">
-      <div class="profile-picture">
-        <img src="../../assets/homepagestaff/image/UserIcon.png" alt="Profile Picture">
-      </div>
-      <p class="username"><?php echo htmlspecialchars($_SESSION['username']); ?></p>
-    </div>
-    <a class="logout-button" href="../../controller/login/logout.php">
-      <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="Logout Icon">
-      <span>LogOut</span>
-    </a>
-  </div>
-
-  <div class="content">
-    <div class="form-container">
-      <h2>INPUT PENGIRIMAN</h2>
-      <form action="../../controller/login/createcontroller.php" method="post">
-        <input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
-        <label for="resi">ID Pengirim</label>
-        <input type="text" id="resi" name="id_pengirim"  placeholder="Masukkan ID Pengirim" required>
-    
-        <label for="status">Pengirim</label>
-        <input type="text" id="status" name="nama_pengirim" placeholder="Masukkan Nama Pengirim" required>
-    
-        <label for="kurir">Nomor Telepon</label>
-        <input type="text" id="kurir" name="nomor_telepon" placeholder="Masukkan Nomor Telepon" required>
-    
-        <label for="staff">Alamat Pengirim</label>
-        <input type="text" id="staff" name="alamat_pengirim" placeholder="Masukkan Alamat" required>
-    
-        <div class="form-buttons">
-            <button type="submit" class="create-button">Next</button>
-            <button type="reset" class="cancel-button" onclick="return confirm('Apakah Anda yakin ingin membatalkan?')">Cancel</button>
-        </div>
-    </form>
-    
-    </div>
-  </div>
-</body>
-</html>
-
-<script>
-  document.querySelector("form").onsubmit = function (e) {
-      const inputs = document.querySelectorAll("input");
-      for (const input of inputs) {
-          if (!input.value) {
-              alert("Harap isi semua field sebelum melanjutkan.");
-              e.preventDefault();
-              return false;
-          }
-      }
-      return true;
-  };
-</script>
-
+<main class="page"><header><a href="../homepageAS/HomePageAdminStaff.php">Dashboard</a><form class="logout-form" method="post" action="../../controller/login/logout.php"><input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>"><button type="submit">Keluar</button></form></header><section class="card"><h1>Buat Pengiriman</h1><p class="step">Langkah 1 dari 3: data pengirim</p><form method="post" action="../../controller/login/createcontroller.php">
+<input type="hidden" name="csrf_token" value="<?= e(csrf_token()) ?>">
+<label for="id_pengirim">ID pengirim</label><input id="id_pengirim" name="id_pengirim" pattern="PE-[0-9]{7}" maxlength="10" required>
+<label for="nama_pengirim">Nama pengirim</label><input id="nama_pengirim" name="nama_pengirim" maxlength="40" required>
+<label for="nomor_telepon">Nomor telepon</label><input id="nomor_telepon" name="nomor_telepon" inputmode="tel" maxlength="15" required>
+<label for="alamat_pengirim">Alamat pengirim</label><input id="alamat_pengirim" name="alamat_pengirim" maxlength="100" required>
+<div class="actions"><a class="button secondary" href="../homepageAS/HomePageAdminStaff.php">Batal</a><button type="submit">Lanjut</button></div>
+</form></section></main>
+</body></html>
