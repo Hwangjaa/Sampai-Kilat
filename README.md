@@ -387,6 +387,10 @@ Sampai Kilat/
 Built for the **Secure Programming** course at BINUS University. The code is
 free to use as a learning reference. The "Sampai Kilat" brand is fictional.
 
-## Author
+## Group Member
 
-Rafael Yudianto — Student ID 2602052153
+Raymond Ivander — 2602059550
+Muhamad Salman Hakim — 2602076443
+Vutanto Hendy Wijaya — 2602063535
+Rafael Satriaprima Yudianto — 2602052153
+Darren Aditya — 2602076153
