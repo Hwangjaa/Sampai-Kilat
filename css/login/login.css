@@ -1,0 +1,85 @@
+/* Mengatur posisi video sebagai background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+
+video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+}
+
+/* Mengatur form login agar berada di tengah layar */
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(255, 255, 255, 0.05); /* Transparansi background */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  backdrop-filter: blur(5px); /* Efek blur ringan di belakang container */
+}
+
+/* Mengatur agar teks dan elemen di dalam form tetap jelas */
+.login-container input,
+.login-container label {
+  color: #000; /* Warna teks tetap hitam */
+  opacity: 1;  /* Teks dan input tidak terkena efek transparan */
+}
+
+/* Gaya untuk form */
+.form-group {
+  margin-bottom: 15px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 5px 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #fff; /* Latar belakang input tetap solid */
+}
+
+/* Gaya tombol login */
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+button:hover {
+  background-color: #4CAF50;
+  color: whi;
+}

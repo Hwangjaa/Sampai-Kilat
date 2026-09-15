@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Update Pengiriman</title>
+  <link rel="stylesheet" href="../../css/updatingDelivery/Update3.css">
+</head>
+<body>
+  <div class="sidebar">
+    <div class="profile">
+      <div class="profile-picture">
+        <img src="../../assets/homepagestaff/image/UserIcon.png" alt="Profile Picture">
+      </div>
+      <p class="username">UserName</p>
+    </div>
+    <button class="logout-button">
+      <img src="../../assets/homepagestaff/image/logout-512.jpg" alt="Logout Icon">
+      <span>LogOut</span>
+    </button>
+  </div>
+
+  <div class="content">
+    <div class="form-container">
+      <h2>UPDATE PENGIRIMAN</h2>
+      <!-- Menambahkan event onsubmit ke form untuk memanggil showSuccessPopup -->
+      <form onsubmit="showSuccessPopup(event)">
+        <label for="resi">Resi</label>
+        <input type="text" id="resi" placeholder="Masukkan Resi" required>
+
+        <label for="status">Status Pengiriman</label>
+        <input type="text" id="status" placeholder="Masukkan Status Pengiriman" required>
+
+        <label for="kurir">Kurir</label>
+        <input type="text" id="kurir" placeholder="Masukkan Nama Kurir" required>
+
+        <label for="layanan">Layanan Pengiriman</label>
+        <input type="text" id="layanan" placeholder="Masukkan Layanan Pengiriman" required>
+
+        <div class="form-buttons">
+          <button type="submit" class="update-button">Update</button>
+          <button type="reset" class="cancel-button">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Popup Sukses -->
+  <div class="popup-container" id="successPopup">
+    <div class="popup-content">
+      <p>Data pengiriman telah berhasil diperbaharui.</p>
+      <div class="popup-buttons">
+        <!-- Tombol Close yang memanggil fungsi redirect -->
+        <button class="popup-close" onclick="redirectToHomePage()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Fungsi untuk menampilkan popup sukses
+    function showSuccessPopup(event) {
+      event.preventDefault(); // Mencegah form dikirim secara default
+      const popup = document.getElementById("successPopup");
+      popup.style.visibility = "visible";
+      popup.style.opacity = "1";
+    }
+
+    // Fungsi untuk menutup popup dan redirect ke halaman HomePageAdminStaff
+    function redirectToHomePage() {
+      const popup = document.getElementById("successPopup");
+      popup.style.visibility = "hidden";
+      popup.style.opacity = "0";
+      // Redirect ke halaman HomePageAdminStaff.html setelah popup ditutup
+      window.location.href = "HomePageAdminStaff.html";
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,219 @@
+/* Reset dan styling dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 5%;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.logo span {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #333;
+    font-size: 1em;
+}
+
+nav a:hover {
+    color: #007bff;
+}
+
+/* Background Image Section */
+.background-image {
+    width: 100%;
+    height: 400px; /* Sesuaikan tinggi sesuai kebutuhan */
+    background-image: url('../../assets/homepage/image/pexels-photo-6169016-fotor-2024101415628.jpg'); /* Ganti dengan path gambar Anda */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Main content styling */
+.main-content {
+    flex: 1;
+    padding: 40px 5%;
+    text-align: center;
+}
+
+/* Tentang Section */
+.tentang-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+}
+
+.tentang-content {
+    max-width: 800px;
+    padding: 20px;
+    text-align: center;
+}
+
+.tentang-content h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.tentang-content p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Visi dan Misi Section */
+.visi-misi-section {
+    text-align: center;
+    padding: 50px;
+    background-color: #fff;
+}
+
+.visi-misi-section h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #222;
+}
+
+.visi-misi-container {
+    display: flex;
+    gap: 50px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.visi, .misi {
+    max-width: 400px;
+    text-align: center;
+    padding: 20px;
+}
+
+.visi img, .misi img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 15px;
+}
+
+.visi h3, .misi h3 {
+    font-size: 24px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.visi p, .misi p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #333;
+}
+
+/* Footer */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 40px 5%;
+    background-color: #f2f2f2;
+    color: #333;
+    text-align: left;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+}
+
+.footer-logo-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer-logo {
+    width: 30px;
+    height: auto;
+    margin-right: 8px;
+}
+
+.footer-section p {
+    margin: 8px 0;
+    font-size: 0.9em;
+}
+
+.footer-section b {
+    font-size: 1em;
+}
+
+/* Ikon telepon dan email di footer */
+.footer-section p img {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* Ikon media sosial dengan bentuk persegi dan tata letak yang rapi */
+.social-media {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.social-media a img {
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+a {
+    color: gray;
+    text-decoration: none;
+}
+
+a:visited {
+    color: gray;
+}
+
+a:hover {
+    color: darkgray;
+}
+
+a:active {
+    color: darkgray;
+}
+a:focus {
+    outline: none;
+}

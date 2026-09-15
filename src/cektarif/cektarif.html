@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rules Page</title>
+    <link rel="stylesheet" href="../../css/cektarif/cektarif.css">
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
+                alt="Logo">
+            <span>SampaiKilat</span>
+        </div>
+        <nav>
+            <a href="../../homepage.html">Home</a>
+            <a href="../cekresi/cekresi.php">Cek Resi</a>
+            <a href="../aboutus/AboutUs.html">About Us</a>
+            <a href="../help/Help.html">Help</a>
+        </nav>
+    </header>
+
+    <!-- Cek Tarif Section -->
+    <div class="container">
+        <h1>Cek Resi</h1>
+        <div class="nav-buttons">
+            <button onclick="window.location.href='../cekresi/cekresi.php';"><b>Cek Resi</b></button>
+            <button class="btn-gray"><b>Cek Tarif</b></button>
+            <button onclick="window.location.href='../ceklokasi/CekLokasi.html';"><b>Cek Lokasi</b></button>
+        </div>
+        <form class="form-tarif">
+            <div class="input-group">
+                <label for="weight">Pengirim</label>
+                <div class="input-wrapper">
+                    <input type="text" id="sender" placeholder="Alamat Pengirim">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="destination">Tujuan</label>
+                <div class="input-wrapper">
+                    <input type="text" id="destination" placeholder="Alamat Penerima">
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="weight">Berat</label>
+                <div class="input-wrapper">
+                    <input type="text" id="weight" placeholder="Berat Barang">
+                    <span class="unit">Kg</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="length">Panjang</label>
+                <div class="input-wrapper">
+                    <input type="text" id="length" placeholder="Panjang">
+                    <span class="unit">Cm</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="width">Lebar</label>
+                <div class="input-wrapper">
+                    <input type="text" id="width" placeholder="Lebar">
+                    <span class="unit">Cm</span>
+                </div>
+            </div>
+            <div class="input-group">
+                <label for="height">Tinggi</label>
+                <div class="input-wrapper">
+                    <input type="text" id="height" placeholder="Tinggi">
+                    <span class="unit">Cm</span>
+                </div>
+            </div>
+            <button class="button-check">Cek Tarif</button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo-container">
+                    <img src="../../assets/homepage/image/png-clipart-lightning-black-and-white-lightning-angle-white-removebg-preview.png"
+                        alt="Logo" class="footer-logo">
+                    <p><b>SampaiKilat</b></p>
+                </div>
+                <p><b>CUSTOMER SERVICE</b></p>
+                <p><img src="../../assets/homepage/image/684846.png" alt=""> (021) 222 2222</p>
+                <p><img src="../../assets/homepage/image/png-transparent-computer-icons-envelope-mail-envelope-miscellaneous-angle-triangle-removebg-preview (1).png"
+                        alt=""> sampai@kilat.co.id</p>
+                <div class="social-media">
+                    <img src="../../assets/homepage/image/Twitter-new-cross-mark-Icon-PNG-X-removebg-preview.png"
+                        alt="Facebook">
+                    <img src="../../assets/homepage/image/59439.png" alt="Instagram">
+                    <img src="../../assets/homepage/image/images-removebg-preview.png" alt="Twitter">
+                    <img src="../../assets/homepage/image/png-transparent-instagram-vector-brand-logos-icon-removebg-preview.png"
+                        alt="Instagram">
+                </div>
+            </div>
+            <div class="footer-section">
+                <p><b>PERUSAHAAN</b></p>
+                <a href="../aboutus/AboutUs.html">Profil Perusahaan</a><br>
+                <a href="../help/Help.html">Bantuan</a>
+            </div>
+            <div class="footer-section">
+                <p><b>LAYANAN</b></p>
+                <a href="../cekresi/cekresi.php">Lacak Pengiriman</a><br>
+                <a href="../cektarif/cektarif.html">Cek Tarif</a><br>
+                <a href="../ceklokasi/CekLokasi.html">Lokasi</a>
+            </div>
+            <div class="footer-section">
+                <p><b>Peraturan</b></p>
+                <a href="../rules/RulesPage.html">Larangan Pengiriman</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Popup for Tarif Information -->
+    <div id="tarifPopup" class="popup">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">&#x2190;</button>
+            <table>
+                <tr>
+                    <th>Layanan</th>
+                    <th>Deskripsi</th>
+                    <th>Tarif</th>
+                    <th>Estimasi</th>
+                </tr>
+                <tr>
+                    <td><img src="../../assets/cektarif/sds.png" alt="SDY Logo"></td>
+                    <td>Sameday Service</td>
+                    <td class="sameday-tarif"></td>
+                    <td>Hari yang sama</td>
+                </tr>
+                <tr>
+                    <td><img src="../../assets/cektarif/ons.png" alt="OVN Logo"></td>
+                    <td>Overnight Service</td>
+                    <td class="overnight-tarif"></td>
+                    <td>1 hari sampai</td>
+                </tr>
+                <tr>
+                    <td><img src="../../assets/cektarif/reg.png" alt="REG Logo"></td>
+                    <td>Regular Service</td>
+                    <td class="regular-tarif"></td>
+                    <td>2 hari sampai</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Function to sanitize input to prevent XSS
+        function sanitizeInput(input) {
+            const div = document.createElement('div');
+            div.textContent = input;
+            return div.innerHTML;
+        }
+
+        // Function to validate if input is an integer
+        function isValidInteger(input) {
+            const sanitizedInput = sanitizeInput(input);
+            const intRegex = /^[0-9]+$/; // Only allows integers (positive numbers)
+            return intRegex.test(sanitizedInput);
+        }
+
+        // Function to calculate tariff
+        function calculateTarif(weight, length, width, height) {
+            const baseRate = 5000;
+            const weightRate = weight * 2000;
+            const volumeRate = (length * width * height) / 5000;
+            return Math.max(baseRate + weightRate, volumeRate);
+        }
+
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById("tarifPopup").style.display = "flex";
+        }
+
+        // Function to close the popup
+        function closePopup() {
+            document.getElementById("tarifPopup").style.display = "none";
+        }
+
+        // Attach the function to the "Cek Tarif" button
+        document.querySelector(".button-check").addEventListener("click", function (event) {
+            event.preventDefault();
+
+            // Get user inputs
+            const weightInput = document.getElementById("weight").value;
+            const lengthInput = document.getElementById("length").value;
+            const widthInput = document.getElementById("width").value;
+            const heightInput = document.getElementById("height").value;
+            const senderAddress = document.getElementById("sender").value.trim();
+            const receiverAddress = document.getElementById("destination").value.trim();
+
+            // Validate addresses
+            if (!senderAddress) {
+                alert("Alamat pengiriman tidak boleh kosong!");
+                return;
+            }
+
+            if (!receiverAddress) {
+                alert("Alamat tujuan tidak boleh kosong!");
+                return;
+            }
+
+            // Sanitize and validate numerical inputs
+            if (
+                !isValidInteger(weightInput) ||
+                !isValidInteger(lengthInput) ||
+                !isValidInteger(widthInput) ||
+                !isValidInteger(heightInput)
+            ) {
+                alert("Masukkan hanya angka positif untuk berat, panjang, lebar, dan tinggi!");
+                return;
+            }
+
+            // Parse inputs to numbers
+            const weight = parseInt(weightInput, 10);
+            const length = parseInt(lengthInput, 10);
+            const width = parseInt(widthInput, 10);
+            const height = parseInt(heightInput, 10);
+
+            // Calculate base tariff
+            const baseTarif = calculateTarif(weight, length, width, height);
+
+            // Update tariffs for all services
+            document.querySelector(".regular-tarif").textContent = `Rp ${baseTarif.toLocaleString('id-ID')}`;
+            document.querySelector(".overnight-tarif").textContent = `Rp ${(baseTarif * 1.5).toLocaleString('id-ID')}`;
+            document.querySelector(".sameday-tarif").textContent = `Rp ${(baseTarif * 2).toLocaleString('id-ID')}`;
+
+            // Show popup
+            openPopup();
+        });
+    </script>
+
+
+</body>
+
+</html>
