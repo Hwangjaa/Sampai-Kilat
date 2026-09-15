@@ -1,103 +1,290 @@
-# Sampai Kilat
+# Sampai Kilat — Package Delivery Information System
 
-Sampai Tujuan, Secepat Kilat
+**Sampai Kilat** is a courier delivery website built as a group assignment
+for the **Secure Programming** course at BINUS University. The project
+focuses on two things:
 
-A courier package website built as the final project for the Secure Programming course at BINUS University
+1. **Functionality** — a complete delivery business flow: package tracking,
+   delivery creation, status updates, and a staff dashboard.
+2. **Secure programming** — applying web application security principles on
+   the server side (PHP) as well as configuration (MySQL, sessions, HTTP
+   headers).
 
-## About the project
+---
 
-The idea is a local delivery company with a public website and an internal staff dashboard
+## The Website Story
 
-Visitors can track a package by entering the tracking number like `RS-0000000` on the tracking page, check shipping rates, look up warehouse locations and register as a customer
+Sampai Kilat simulates a local courier company with the tagline
+*"Sampai Tujuan, Secepat Kilat!"* ("Arrive at Your Destination, Lightning
+Fast!"). The website has two sides:
 
-Staff log in to a dashboard that shows every delivery in one table with the package content, the driver, the shipping time and the last known position
+### Public Side (customers)
 
-From the dashboard staff can create a new delivery in three steps, sender data, receiver data and service choice
-At the end the system generates a new tracking number
-While the package moves between warehouses staff update its position, the status list is a fixed set like WH Tangerang, WH Jakarta and SAMPAI
-The delete feature only exists for the Admin role
+- **Homepage** — service profile: global delivery (air & land), COD,
+  24-hour customer service.
+- **Track a Package** — customers enter a tracking number in the
+  `RS-0000000` format and see the package's latest status plus its travel
+  history (which warehouses it has passed through).
+- **Rate Check**, **Location Check**, **About Us**, **Help** — supporting
+  service information pages.
+- **Customer Registration** — a form to register as a sending customer.
 
-The data lives in two MySQL databases
-`sampaikilat_account` holds staff accounts and roles
-`sampaikilat_operational` holds customers, packages, transit records, drivers and warehouse positions
+### Internal Side (admin & warehouse staff)
 
-## How security is handled
+Protected by login. Menu:
 
-Security was the main grading point of this course so every decision below was made on purpose
+- **Dashboard** — a table of every delivery: tracking number, package
+  contents, driver, shipping time, and the package's last known position.
+- **Create Delivery** — a three-step form: sender data → receiver data →
+  service & confirmation. It generates a new tracking number in the
+  database.
+- **Update Delivery** — staff update the package's position as it arrives
+  at each next warehouse (WH Tangerang → WH Jakarta → ... → DELIVERED).
+- **Delete** — only for the Admin role (`RL-001`); removes transit data.
 
-All database queries use prepared statements, user input never becomes part of the SQL string
-Every value printed to the page goes through `htmlspecialchars` to stop XSS
-Sensitive forms send a CSRF token and the server checks it with `hash_equals` before doing anything, a request with a bad token gets HTTP 419
-Login regenerates the session id so session fixation does not work
-The session cookie is HttpOnly, Secure when HTTPS is on and SameSite Lax
-Logout destroys the session for real, it empties the session data, expires the cookie and calls session destroy
-The dashboard checks the role on every request, hiding the delete button in HTML is not the security boundary because the delete endpoint asks for the Admin role again on the server
-Security headers like `X-Frame-Options` and a strict Content Security Policy are sent from one bootstrap file on every request
-Tracking numbers are validated with a regex on the server, not just with the HTML pattern attribute
-Status updates only accept whitelisted warehouse names so nobody can push an arbitrary status into the database
-New tracking numbers are generated inside a transaction with a locked read so two requests at the same moment cannot grab the same number
-Database errors are written to the error log and the browser only sees a generic message, internal details never leak to the page
-Database credentials come from environment variables, not from the source code
+### Database
 
-## Known limitations
+Two separate databases, following the principle of data separation:
 
-These are kept on purpose for transparency since this is a course project
+| Database                  | Contents                                             |
+|---------------------------|------------------------------------------------------|
+| `sampaikilat_account`     | Staff, roles, and login accounts                     |
+| `sampaikilat_operational` | Tracking numbers, customers, packages, transit records, drivers, warehouse positions |
 
-Passwords still use the layered MD5 scheme from the course template because the accounts table stores 32 character hashes
-The proper fix is `password_hash` with a VARCHAR 255 column and that would be the first thing to change for real deployment
-The seed accounts use weak passwords, they exist only for the demo
-There is no rate limiting on the login endpoint yet, only a short delay to slow down brute force attempts
+Full scripts are in `scriptDB/`, including seed data for testing.
+
+---
+
+## Secure Programming: What Was Applied
+
+Every finding from our internal security audit has been addressed. A
+summary of the security practices in this project:
+
+### 1. SQL Injection — Fully Parameterized Queries
+
+Every database query uses prepared statements (`mysqli` +
+`bind_param`) — no user input is ever concatenated into SQL. Example:
+
+```php
+$stmt = $conn->prepare('SELECT username_staff, password_staff, id_role
+                        FROM akun_staff WHERE username_staff = ? LIMIT 1');
+$stmt->bind_param('s', $username);
+```
+
+### 2. Cross-Site Scripting (XSS) — Output Escaping
+
+Every value from the database that gets rendered into HTML is escaped
+with `htmlspecialchars(..., ENT_QUOTES, 'UTF-8')` — including tracking
+numbers, customer names, addresses, and staff usernames on the
+dashboard.
+
+### 3. Cross-Site Request Forgery (CSRF)
+
+Sensitive forms (login, create, update, delete, customer registration)
+use the **synchronizer token pattern**:
+
+- A random 32-byte token (`random_bytes(32)`) is stored in the session.
+- It is sent as a hidden input `<input type="hidden" name="csrf_token">`.
+- The server verifies it with `hash_equals()` (a timing-safe comparison).
+- Requests with a missing or invalid token are rejected with HTTP `419`.
+
+### 4. Session Hardening
+
+`controller/login/bootstrap.php`:
+
+- Cookies are `HttpOnly` + `Secure` (automatically active under HTTPS) +
+  `SameSite=Lax`.
+- **Session regeneration** after a successful login
+  (`session_regenerate_id(true)`) — prevents session fixation.
+- Logout truly destroys the session: clears `$_SESSION`, expires the
+  cookie, then calls `session_destroy()`.
+
+### 5. Role-Based Access Control (RBAC)
+
+- A `require_login()` helper forces every internal page to check the
+  session; without a login the request gets HTTP `401`.
+- The Admin (`RL-001`) vs Staff (`RL-002`) roles are checked with
+  `hash_equals()`. The Delete button is only rendered for Admins, and
+  `deleteData.php` re-validates the role server-side (hiding the button
+  is never the security boundary).
+- Internal static pages were moved to `.php` so they cannot be accessed
+  without passing the session check.
+
+### 6. HTTP Security Headers
+
+Sent from `bootstrap.php` on every request:
+
+```
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Referrer-Policy: strict-origin-when-cross-origin
+Content-Security-Policy: default-src 'self'; ... frame-ancestors 'none'
+```
+
+The CSP restricts script/style/image sources to the site's own origin and
+forbids framing — mitigating clickjacking, MIME-sniffing, and referrer
+leakage.
+
+### 7. Input Validation & Defense in Depth
+
+- Tracking numbers are validated with the regex `^RS-[0-9]{7}$` on the
+  server (not just the HTML `pattern` attribute).
+- Status updates use a **whitelist** of allowed warehouse names — users
+  cannot push arbitrary status values into the database.
+- Phone numbers and dates are validated with regex before entering a
+  query.
+- New tracking numbers are generated inside a transaction with
+  `SELECT ... FOR UPDATE` to avoid race conditions / duplicate tracking
+  numbers under concurrent requests.
+- Database errors never leak to the browser; details go to `error_log()`
+  and users only see a generic message plus HTTP `503`.
+
+### 8. No Hardcoded Secrets
+
+Database credentials are read from **environment variables**
+(`DB_HOST`, `DB_USER`, `DB_PASS`, `DB_ACCOUNT`, `DB_OPERATIONAL`) — never
+planted in the source code. The `controller/` and `scriptDB/` folders must
+not be exposed directly by the web server.
+
+### Known Limitations (Kept on Purpose)
+
+For academic transparency, this project still has:
+
+- **Legacy layered-MD5 password hashing**
+  (`md5(md5(md5($pass) . 'SampaiKilat'))`) — it follows the `CHAR(32)`
+  schema that came with the course template. A modern implementation
+  would use `password_hash()` / `password_verify()` with a
+  `VARCHAR(255)` column. `hash_equals()` is still used so the hash
+  comparison is timing-safe.
+- Seed accounts use weak passwords (`password123`, etc.) — for demo
+  purposes only, not production.
+- No rate limiting on the login endpoint yet (only a `usleep(250ms)`
+  delay to slow down brute force).
+
+---
 
 ## Requirements
 
-PHP 8.0 or newer
-MySQL or MariaDB 8 or newer
-XAMPP or Laragon for the easiest setup
-Any modern browser
+- **PHP 8.0+** (uses `declare(strict_types=1)`, the `mixed` type hint in
+  `e()`)
+- **MySQL / MariaDB 8+** (uses CHECK constraints + REGEXP)
+- Web server: **Apache** (XAMPP/Laragon) or the **PHP built-in server**
+- A modern browser
 
-No Composer and no framework, the whole thing is plain PHP
+No Composer dependencies — pure native PHP + MySQL.
 
-## How to run
+---
 
-1 Put the project folder inside the web root, for XAMPP that is the htdocs folder
-2 Start Apache and MySQL from the control panel
-3 Open phpMyAdmin and import both SQL files from the `scriptDB` folder, `SampaiKilat-AccountDatabase.sql` and `SampaiKilat-OperationalDatabase.sql`
-4 Set the environment variables if your MySQL is not the default local setup
-   DB_HOST default `127.0.0.1`
-   DB_USER default root
-   DB_PASS default empty
-   DB_ACCOUNT default `sampaikilat_account`
-   DB_OPERATIONAL default `sampaikilat_operational`
-5 Open `http://localhost/Sampai Kilat/homepage.html` in the browser
-6 Open the login page from the site and use one of the seed accounts
+## How to Run
 
-| Username | Password | Role |
-|---|---|---|
-| andi.pratama | password123 | Admin |
-| budi.santoso | securepass | Staff |
-| citra.dewi | mypassword | Staff |
+### 1. Prepare the Databases
 
-7 Try the main flow, log in, create a delivery, update its status to the next warehouse, log out, then track the resi from the public page
+Import both SQL scripts into MySQL (order does not matter since the
+databases are separate):
 
-## Project structure
-
-```
-homepage.html
-src/cekresi              public tracking page
-src/homepageAS           staff dashboard
-src/createDelivery       create delivery form, three steps
-src/updatingDelivery     update package status
-src/login                login page
-src/mendaftarPelanggan   customer registration
-controller/login         bootstrap, session, CSRF, database connections, all controllers
-scriptDB                 the two SQL schemas with seed data
-css and assets           stylesheets, images and videos
+```bash
+mysql -u root -p < scriptDB/SampaiKilat-AccountDatabase.sql
+mysql -u root -p < scriptDB/SampaiKilat-OperationalDatabase.sql
 ```
 
-## Group members
+### 2. Set Environment Variables
 
-Raymond Ivander 2602059550
-Muhamad Salman Hakim 2602076443
-Vutanto Hendy Wijaya 2602063535
-Rafael Satriaprima Yudianto 2602052153
-Darren Aditya 2602076153
+```bash
+export DB_HOST="127.0.0.1"
+export DB_USER="root"
+export DB_PASS="your_password"
+export DB_ACCOUNT="sampaikilat_account"
+export DB_OPERATIONAL="sampaikilat_operational"
+```
+
+> If they are not set, the app falls back to the local defaults
+> `127.0.0.1` / `root` / empty — fine for a default XAMPP setup, but
+> **required** for real deployment.
+
+### 3. Start the Web Server
+
+**Option A — XAMPP / Laragon:**
+put the project folder in `htdocs/` (XAMPP) or Laragon's web root, then
+start Apache + MySQL. Open
+`http://localhost/Sampai Kilat/homepage.html`.
+
+**Option B — PHP built-in server (quick test):**
+
+```bash
+cd "Sampai Kilat"
+php -S localhost:8000
+```
+
+Then open `http://localhost:8000/homepage.html`.
+
+### 4. Log In as Staff
+
+Open the login page from the navbar. Seed accounts:
+
+| Username       | Password      | Role  |
+|----------------|---------------|-------|
+| `andi.pratama` | `password123` | Admin |
+| `budi.santoso` | `securepass`  | Staff |
+| `citra.dewi`   | `mypassword`  | Staff |
+
+### 5. Try the Main Flow
+
+1. Log in → the dashboard shows the delivery table.
+2. Click **Create** → fill in 3 steps → the new tracking number appears
+   on the dashboard.
+3. Click **Update** → pick a tracking number → move its status to the
+   next warehouse.
+4. Log out → open **Track a Package** on the homepage → enter the
+   tracking number → the status is now publicly visible.
+
+---
+
+## Project Structure
+
+```
+Sampai Kilat/
+|-- homepage.html                  # Public landing page
+|-- assets/                        # Images & videos
+|-- css/                           # Stylesheets per page
+|-- src/
+|   |-- cekresi/                   # Package tracking (public)
+|   |-- cektarif/ ceklokasi/       # Rate & location info
+|   |-- login/                     # Staff login page
+|   |-- homepageAS/                # Admin/staff dashboard
+|   |-- createDelivery/            # Create delivery (3 steps)
+|   |-- updatingDelivery/          # Update delivery status
+|   `-- mendaftarPelanggan/        # Customer registration
+|-- controller/login/
+|   |-- bootstrap.php              # Sessions, CSRF, headers, auth helpers
+|   |-- koneksiDB.php              # Account DB connection (env vars)
+|   |-- koneksiDB2.php             # Operational DB connection (env vars)
+|   |-- logincontroller.php        # Login processing
+|   |-- logout.php                 # Logout + session destruction
+|   |-- createcontroller*.php      # Delivery creation processing
+|   |-- updateDelivery.php         # Status update processing
+|   |-- deleteData.php             # Delete transit (admin only)
+|   `-- submitPelanggan.php        # Customer registration processing
+`-- scriptDB/                      # MySQL DDL + seed data
+```
+
+---
+
+## License & Context
+
+This project was built for the **Secure Programming** course at BINUS
+University. The code is free to use as a learning reference. The "Sampai
+Kilat" brand is fictional, used for the assignment.
+
+---
+
+## Group Members
+
+Who participated in this project:
+
+| Name | Student ID |
+|------|------------|
+| Raymond Ivander | 2602059550 |
+| Muhamad Salman Hakim | 2602076443 |
+| Vutanto Hendy Wijaya | 2602063535 |
+| Rafael Satriaprima Yudianto | 2602052153 |
+| Darren Aditya | 2602076153 |
